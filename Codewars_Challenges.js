@@ -32,6 +32,38 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//HIGHEST WORD - LVL 6
+//https://www.codewars.com/kata/57eb8fcdf670e99d9b000272/train/javascript
+
+let key = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+  "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+  "w", "x", "y", "z"
+];
+
+function wordScore(word) {
+  let score = 0;
+  for (let j = 0; j < word.length; j++) {
+    let char = word[j];
+    score += (key.indexOf(char) + 1);
+  }
+  return score;
+}
+
+function high(x) {
+  let bestWord = "";
+  let bestScore = 0;
+  words = x.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    let score = wordScore(word);
+    if (score > bestScore) {
+      bestScore = score;
+      bestWord = word;
+    }
+  }
+  return bestWord;
+}
+
 //GOOD VS EVIL - LVL 6
 //https://www.codewars.com/kata/52761ee4cffbc69732000738
 function goodVsEvil(good, evil) {
@@ -1147,6 +1179,15 @@ function shortenToDate(longDate) {
 
   return newDate;
 }
+
+//FIND WHAT CENTURY A YEAR IS FROM - LVL 8
+//https://www.codewars.com/kata/century-from-year
+
+function centuryFromYear(year) {
+  return Math.floor((year - 1) / 100) + 1;
+}
+
+console.log(centuryFromYear(1908));
 
 
 
