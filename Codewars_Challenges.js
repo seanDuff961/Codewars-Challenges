@@ -32,6 +32,103 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//DECODE - LVL 6
+//
+function decode(str) {
+  const result = [];
+  const array = Array.from(str);
+
+  for (let i = 0; i < array.length; i++) {
+    const char = array[i];
+    let nChars = 1;
+    let str = "";
+    const moreThanOne = char === "\\";
+    if (moreThanOne) {
+      i++;
+      let number = "";
+      while (!isNaN(array[i])) {
+        number += array[i++];
+      }
+      nChars = +number;
+    }
+    for (let j = 0; j < nChars; j++) {
+      str += array[i + j];
+    }
+    if (moreThanOne) {
+      i += nChars - 1;
+    }
+    result.push(str);
+  }
+  return result;
+}
+console.log(decode("abc\5defghi\2jkl"));
+
+//SIMPLE FUN - PRIME PRODUCT - LVL 6
+//DETERMINE MAXIMUM PRODUCT OF TWO PRIMES, WHICH ADD UP TO N
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if(n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function primeProduct(n) {
+  for (let i = Math.floor(n / 2); i > 1; i--) {
+    if (isPrime(i) && isPrime(n - i)) {
+      return i * (n-i);
+    }
+  }
+  return 0;
+}
+
+//POSITIONS AVERAGE - LVL 6
+//
+function posAverage(s) {
+  let array = s.split(", ");
+  let arrayCopy = JSON.parse(JSON.stringify(array));
+  let sLength = array.length;
+  let totalPossibleCombinations = ((sLength * (sLength - 1)) / 2);
+  let totalPossiblePositions = (totalPossibleCombinations * array[0].length);
+  let count = 0;
+
+  array.forEach((substring1, index1) => {
+    arrayCopy.shift();
+    arrayCopy.forEach((substring2, index2) => {
+      let substring2Array = substring2.split('');
+      substring2Array.forEach((number, i) => {
+        if (number === substring1[i]) {
+          count += 1;
+        }
+      })
+    });
+  });
+  return count/totalPossiblePositions * 100;
+}
+console.log(posAverage("444996, 699990, 666690, 096904, 600644, 640646, 606469, 409694, 666094, 606490"));
+
+//SORT THE ODD - LVL 6
+//https://www.codewars.com/kata/578aa45ee9fd15ff4600090d/solutions/javascript
+
+let array = [3, 2, 5, 4, 1];
+
+function sortArray (array) {
+  let odds = array.filter((element) => element % 2 !== 0).sort((a, b) => a - b);
+  return array.map(element => {
+    if (element % 2 !== 0) {
+      return odds.shift();
+    }
+    else {
+      return element;
+    }
+  });
+}
+
+console.log(sortOddsOnly(array));
+
 //HIGHEST WORD - LVL 6
 //https://www.codewars.com/kata/57eb8fcdf670e99d9b000272/train/javascript
 
@@ -63,6 +160,18 @@ function high(x) {
   }
   return bestWord;
 }
+
+//NEW CASHIER DOES NOT KNOW ABOUT SPACE OR SHIFT - LVL 6
+//
+function getOrder(input) {
+  let menu = ['Burger','Fries','Chicken','Pizza','Sandwich','Onionrings','Milkshake','Coke'];
+  let output = [];
+  menu.forEach((value) => {
+    output.push(...Array((input.match(RegExp(value, "gi")) || []).length).fill(value));
+  });
+  return output.join(' ');
+}
+console.log(getOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"));
 
 //GOOD VS EVIL - LVL 6
 //https://www.codewars.com/kata/52761ee4cffbc69732000738
@@ -102,6 +211,38 @@ function goodVsEvil(good, evil) {
       return "Battle Result: No victor on this battle field";
     }
 }
+
+//FOOTBALL - YELLOW AND RED CARDS - LVL 6
+//https://www.codewars.com/kata/5cde4e3f52910d00130dc92c
+
+function menStillStanding(cards) {
+    const teams = [
+      Array(11).fill(1),
+      Array(11).fill(1)
+    ];
+  
+    for (let card of cards) {
+      const [team, player, cardColor] = card.split(/([0-9]+)/);
+      const teamIndex = team === 'A' ? 0 : 1;
+      const teamPlayers = teams[teamIndex];
+  
+      if (cardColor === 'Y') {
+        teamPlayers[player - 1] -= 0.5;
+      } else {
+        teamPlayers[player - 1] -= 1;
+      }
+  
+      if(getNumberOfPlayers(teamPlayers) < 7) {
+        break;
+      }
+    }
+  
+    return [getNumberOfPlayers(teams[0]), getNumberOfPlayers(teams[1])];
+  }
+  
+  function getNumberOfPlayers(team) {
+    return team.filter(player => player > 0).length;
+} 
 
 //A STRING OF SORTS - LVL 6
 //https://www.codewars.com/kata/536c6b8749aa8b3c2600029a
@@ -143,27 +284,33 @@ function count(addresses) {
 
 //CHECK IF BRACES ARE VALID - LVL 6
 //https://www.codewars.com/kata/valid-braces
-function validBraces(braces) {
-    let tracer = [];
-    for (let i = 0; i < braces.length; i++) {
-      if (braces[i] === "(" || braces[i] === "{" || braces[i] === "[") {
-        tracer.push(braces[i]);
-      } else {
-        if (tracer.length === 0) return false;
-        let lastValue = tracer[tracer.length - 1];
-        if (
-          (braces[i] === "]" && lastValue === "[") ||
-          (braces[i] === "}" && lastValue === "{") ||
-          (braces[i] === ")" && lastValue === "(")
-        ) {
-          tracer.pop();
-        } else {
-          break;
-        }
+function validBraces(braces){
+  const tracer = [];
+  for (let i = 0; i < braces.length; i++){
+    let element = braces[i];
+    if (element === "(" || element === "{" || element === "[") {
+      tracer.push(element)
+    } 
+    else {
+      if (tracer.length === 0) return false;
+      let lastTracerValue = tracer[tracer.length-1];
+      console.log(tracer);
+      if ((element === ']' && lastTracerValue === '[') || (element === '}' && lastTracerValue === '{') || (element === ')' && lastTracerValue === '(')) {
+        tracer.pop()
+      } 
+      else {
+        break;
       }
     }
-    return tracer.length === 0;
+  }
+  if (tracer.length === 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
+console.log(validBraces("[{[{}]}]"));
 
 //STOP GNINNIPS MY SDROW! - LVL 6
 //https://www.codewars.com/kata/5264d2b162488dc400000001
@@ -456,6 +603,65 @@ function isPangram(string) {
     }
     return true;
 }
+
+//ARRAY LEADERS(ARRAY SERIES #3) - LVL 7
+
+function arrayLeaders (numbers) {  
+  let leaders = [];
+  while (numbers.length > 1) {
+    let first = numbers[0];
+    numbers = numbers.splice(1, numbers.length -1); 
+    let rest = numbers.reduce((a, b) => a + b);
+    if (first > rest) {
+      leaders.push(first);
+    }
+    if (numbers.length === 1) {
+      if (numbers[0] > 0) {
+        leaders.push(numbers[0])
+      }
+    }
+  }
+  return leaders;
+}
+console.log(arrayLeaders([5, 2, -1]));
+
+//MAXIMUM PRODUCT - LVL 7
+
+function adjacentElementsProduct(array) {
+  let products = [];
+  for (let i = 0; i < array.length - 1; i++) {
+    products.push(array[i] * array[i + 1]);
+  }
+  products = products.sort((a, b) => b - a);
+  return products[0];
+}
+console.log(adjacentElementsProduct([4, 12, 3, 1, 5]));
+
+//AVERAGE ARRAY - LVL 7
+
+function avgArray(parentArr) {
+  const parentArrLength = parentArr.length;
+  const first = parentArr.shift();
+  parentArr.forEach((value) => {
+    value.forEach((element, index) => {
+      first[index] += element;
+    });
+  });
+  return first.map(element => element / parentArrLength);
+}
+
+//FIND THE STRAY NUMBER - LVL 7
+
+function stray(numbers) {
+  numbers = numbers.sort((a, b) => a - b);
+  if (numbers[0] !== numbers[1]) {
+    return numbers[0];
+  }
+  else {
+    return numbers[numbers.length - 1];
+  }
+}
+console.log([17, 17, 3, 17, 17, 17, 17]);
 
 //CHECK IF NUMBER IS DISARIUM - LVL 7
 //https://www.codewars.com/kata/5a53a17bfd56cb9c14000003
