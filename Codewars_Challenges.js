@@ -32,6 +32,40 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//SIMPLE SIMPLE SIMPLE STRING EXPANSION - LVL 6
+//
+function stringExpansion(s) {
+  s = Array.from(s);
+  let array = [];
+  let number = [];
+  for (let i = 0; i < s.length; i++) {
+    //if the last item is a number
+    if (s[s.length - 1].match(/[0-9]/)) {
+      s.pop();
+    }
+    //if it's a valid number
+    if (s[i].match(/[0-9]/) && (s[i + 1] || '').match(/[a-zA-Z]/)) {
+      number.push(Number(s[i]));
+    }
+    //if it's a letter
+    if (s[i].match(/[a-zA-Z]/)) {
+      array.push(Array(number[number.length -1]).fill(s[i]));
+    }
+  }
+  let newArray = [];
+  //loop to flatten array, since .flat() is not supported
+  for (let i = 0; i < array.length; i++) {
+    let element = array[i];
+    if (Array.isArray(element)) {
+      for (let j = 0; j < element.length; j++) {
+        newArray.push(element[j]);
+      }
+    }
+  }
+  return newArray.join("");
+}
+console.log(stringExpansion("a2bcde"));
+
 //DECODE - LVL 6
 //
 function decode(str) {
@@ -603,6 +637,55 @@ function isPangram(string) {
     }
     return true;
 }
+
+//STRONG N Strong Number (Special Numbers Series #2)
+
+function factorial (num) {
+  let factorial = 1;
+  for (let i = 1; i <= num; i++) {  
+    factorial *= i;
+  }
+  return factorial;        
+}
+function strong(n) {
+  let newNum = String(n).split("").map(Number);
+  let sum = 0;
+  newNum.forEach((value, index) => {
+    sum += factorial(value);
+  });
+  if (sum === n) {
+    return "STRONG!!!!";
+  }
+  else {
+    return "Not Strong !!";
+  }
+}  
+
+//SUM OF ODD NUMBERS IN ROW IN ODD PYRAMID - LVL 7
+
+function rowSumOddNumbers(n) {
+  let first = (n * n) - (n - 1);
+  let array = [first];
+  while (n > 1) {
+    array.push(first += 2);
+    n--;
+  }
+  return array.reduce((a, b) => a + b);
+}
+console.log(rowSumOddNumbers(3));
+
+//MINIMIZE SUM OF ARRAY (ARRAY SERIES #1) - LVL 7
+
+function minSum(arr) {
+  let sums = [];
+  let array = arr.sort((a, b) => a - b);
+  while (arr.length) {
+    sums.push(arr[0] * arr[arr.length -1]);
+    arr = arr.slice(1, arr.length -1);
+  }
+  return sums.reduce((a, b) => a + b);
+}
+console.log(minSum([12,6,10,26,3,24]));
 
 //ARRAY LEADERS(ARRAY SERIES #3) - LVL 7
 
