@@ -60,8 +60,8 @@ function longestConsec(strarr, k) {
           result.push(initialWindow);
       }
   }
-  for (let k = 0; k < result.length; k++) {
-      let word = result[k];
+  for (let i = 0; i < result.length; i++) {
+      let word = result[i];
       if (word.length > longest.length) {
           longest = word;
       }
