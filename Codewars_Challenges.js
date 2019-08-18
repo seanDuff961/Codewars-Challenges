@@ -1,3 +1,5 @@
+
+
 //STRIP COMMENTS - LVL 4
 //https://www.codewars.com/kata/51c8e37cee245da6b40000bd
 function solution(input, markers) {
@@ -30,6 +32,75 @@ function pigIt(str) {
       }
     }
     return str.join(" ");
+}
+
+//CONSECUTIVE STRINGS - LVL 6
+//
+
+function longestConsec(strarr, k) {
+  let result = [];
+  let longest = "";
+  if (k === 0 || k > strarr.length) {
+      return "";
+  }
+  if (k === 1) {
+      for (let l = 0; l < strarr.length; l++) {
+          result.push(`${strarr[l]}`);
+      }
+  }
+  if (k > 1) {
+      let initialWindow = '';
+
+      for (let i = 0; i < k; i++) {
+          initialWindow += strarr[i];
+      }
+      result.push(initialWindow);
+      for (let i = k; i < strarr.length; i++) {
+          initialWindow = initialWindow.slice(strarr[i-k].length) + strarr[i];
+          result.push(initialWindow);
+      }
+  }
+  for (let k = 0; k < result.length; k++) {
+      let word = result[k];
+      if (word.length > longest.length) {
+          longest = word;
+      }
+  }
+  return longest;
+} 
+
+//SEPARATE THE WHEAT FROM THE CHAFF - LVL 6
+//
+function lastIndexOf(arr, pred, start) {
+  start = start || arr.length - 1;
+  for (let i = start; i >= 0; i--) {
+    if (pred(arr[i])) return i;
+  }
+  return -1;
+}
+
+function indexOf(arr, pred, start = 0) {
+  for (let length = arr.length, i = start; i < length; i++) {
+    if (pred(arr[i])) return i;
+  }
+  return Infinity;
+}
+
+function wheatFromChaff(values) {
+    
+    let firstPos = indexOf(values, x => x > 0);
+    let lastNeg = lastIndexOf(values, x => x < 0);
+    
+    while ( firstPos < lastNeg ) {
+      let a = values[firstPos];
+      let b = values[lastNeg];
+      values[firstPos] = b;
+      values[lastNeg] = a;
+      
+      firstPos = indexOf(values, x => x > 0, firstPos);
+      lastNeg = lastIndexOf(values, x => x < 0, lastNeg);
+    }
+    return values;
 }
 
 //SIMPLE SIMPLE SIMPLE STRING EXPANSION - LVL 6
@@ -318,6 +389,7 @@ function count(addresses) {
 
 //CHECK IF BRACES ARE VALID - LVL 6
 //https://www.codewars.com/kata/valid-braces
+//FIRST SYNTAX
 function validBraces(braces){
   const tracer = [];
   for (let i = 0; i < braces.length; i++){
@@ -345,6 +417,39 @@ function validBraces(braces){
   }
 }
 console.log(validBraces("[{[{}]}]"));
+
+//CHECK IF BRACES ARE VALID - LVL 6
+//SECOND SYNTAX
+function validBraces(braces){
+  let tracer = [];
+  for (let i = 0; i < braces.length; i++) {
+    if (braces[i] === "(" || braces[i] === "{" || braces[i] === "[") {
+      tracer.push(braces[i]);
+    }
+    else {
+      if (tracer.length === 0) {
+      return false;
+      }
+      if (braces[i] === ")" && tracer[tracer.length-1] === "(") {
+        tracer.pop();
+        continue;
+      }
+      if (braces[i] === "}" && tracer[tracer.length-1] === "{") {
+        tracer.pop();
+        continue;
+      }
+      if (braces[i] === "]" && tracer[tracer.length-1] === "[") {
+        tracer.pop();
+        continue;
+      } 
+      else {
+        break;
+      }
+    }
+  }
+  return tracer.length === 0;
+}
+console.log(validBraces("(){}[]"));
 
 //STOP GNINNIPS MY SDROW! - LVL 6
 //https://www.codewars.com/kata/5264d2b162488dc400000001
@@ -1006,6 +1111,15 @@ function shiftLeft(s, t) {
     }
     return false;
 }
+
+//FORM THE MINIMUM - LVL 7
+//
+function minValue(values){
+  values = [...new Set(values)];
+  values = values.sort((a, b) => a - b);
+  return Number(values.join(""));
+}
+console.log(minValue())
   
 //GET THE MIDDLE CHARACTER - LVL 7
 //https://www.codewars.com/kata/56747fd5cb988479af000028
@@ -1478,8 +1592,27 @@ function centuryFromYear(year) {
 
 console.log(centuryFromYear(1908));
 
+//FIND NEAREST SQUARE NUMBER - LVL 8
+//
 
+function nearestSq(n) {
+  return Math.pow(Math.round(Math.sqrt(n)), 2);
+}
 
+//IS STRING UPPERCASE - LVL 8
+//
 
+String.prototype.isUpperCase = function() {
+  const str = this.toString();
   
+  let array = Array.from(str);
+  let upperCase = array.map((element) => element.toUpperCase());
+  let string1 = JSON.stringify(array);
+  let string2 = JSON.stringify(upperCase);
+  
+  // return this.toString() === this.toString().toUpperCase();
+  
+  return string1 === string2;
+
+}
   
