@@ -34,6 +34,19 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//PERSISTENCE - LVL 6
+//
+
+function persistence(num) {
+  let array = String(num).split("").map(Number);
+    let count = 0;
+    while (array.length > 1) {
+      array = String(array.reduce((a, b) => a * b )).split("").map(Number);
+      count ++;
+    }
+  return count;
+}
+
 //STRING TRANSFORMER - LVL 6
 //
 
