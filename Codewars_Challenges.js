@@ -34,6 +34,58 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//STRING TRANSFORMER - LVL 6
+//
+
+function stringTransformer(str) {
+  let newString = [];
+  let array = str.split(" ");
+  for (let i = 0; i < array.length; i++) {
+    let word = array[i];
+    let newWord = "";
+    for (let j = 0; j < word.length; j++) {
+      if (word[j].match(/[a-z]/)) {
+        newWord += (word[j].toUpperCase());
+      }
+      if (word[j].match(/[A-Z]/)) {
+        newWord += (word[j].toLowerCase());
+      }
+    }
+    newString.push(newWord);
+  }
+  newString = newString.reverse();
+  return newString.join(" ");
+}
+
+//WHAT'S IN A NAME - LVL 6
+//
+
+function nameInStr(str, name){
+  let nameregex = new RegExp(".*" + name.split("").join(".*") + ".*", "i");
+  return nameregex.test(str);        
+}
+
+//WHO LIKES IT - LVL 6
+//
+
+function likes(names) {
+  if (names.length === 0) {
+    return "no one likes this";
+  }
+  if (names.length === 1) {
+    return `${names[0]} likes this`;
+  }
+  if (names.length === 2) {
+    return `${names[0]} and ${names[1]} like this`;
+  }
+  if (names.length === 3) {
+    return `${names[0]}, ${names[1]} and ${names[2]} like this`;
+  }
+  if (names.length > 3) {
+    return `${names[0]}, ${names[1]} and ${names.length - 2} others like this`;
+  }
+}
+
 //CONSECUTIVE STRINGS - LVL 6
 //
 
@@ -778,6 +830,31 @@ function rowSumOddNumbers(n) {
   return array.reduce((a, b) => a + b);
 }
 console.log(rowSumOddNumbers(3));
+
+//ALTERNATE CAPITALIZATION
+function capitalize(s){
+  let first = "";
+  let second = "";
+  let result = [];
+  for (let i = 0; i < s.length; i++) {
+    if (i % 2 === 0) {
+      first += (s[i].toUpperCase());
+    }
+    else {
+      first += (s[i]);
+    }
+  }
+  for (let j = 0; j < s.length; j++) {
+    if (j % 2 !== 0) {
+      second += (s[j].toUpperCase());
+    }
+    else {
+      second += (s[j]);
+    }
+  }
+  result.push(first, second);
+  return result;
+};
 
 //MINIMIZE SUM OF ARRAY (ARRAY SERIES #1) - LVL 7
 
