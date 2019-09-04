@@ -34,6 +34,25 @@ function pigIt(str) {
     return str.join(" ");
 }
 
+//FIND THE MISSING LETTER - LVL 6
+
+function findMissingLetter(array) {
+	if (array[0].match(/[A-Z]/)) {
+		const alphabet = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ').split('');
+		const startIdx = alphabet.indexOf(array[0]);
+		const regex = alphabet.slice(startIdx, (startIdx + (array.length + 1)));
+		return regex.filter(x => !array.includes(x)).join('');
+	}
+	if (array[0].match(/[a-z]/)) {
+		const alphabet2 = ('abcdefghijklmnopqrstuvwxyz').split('');
+		const startIdx2 = alphabet2.indexOf(array[0]);
+		const regex2 = alphabet2.slice(startIdx2, (startIdx2 + (array.length + 1)));
+		return regex2.filter(x => !array.includes(x)).join('');
+	}
+}
+
+console.log(findMissingLetter(['a','b','c','d','f']));
+
 //PERSISTENCE - LVL 6
 //
 
@@ -830,6 +849,17 @@ function strong(n) {
     return "Not Strong !!";
   }
 }  
+
+//FIND SCREEN SIZE - LVL 7
+
+function findScreenHeight(width, ratio) {
+  ratio = ratio.split(':').map(Number);
+  const height = (width * ratio[1]) / ratio[0];
+  return `${String(width)}x${String(height)}`;
+}
+
+console.log(findScreenHeight(1024,"4:3"));
+
 
 //SUM OF ODD NUMBERS IN ROW IN ODD PYRAMID - LVL 7
 
