@@ -19,7 +19,29 @@ function solution(input, markers) {
   return newString.toString();
 }
 
-console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"]));
+console.log(
+  solution("apples, plums % and bananas\npears\noranges !applesauce", [
+    "%",
+    "!"
+  ])
+);
+
+//VALID PARENTHESES - LVL 5
+
+function validParentheses(parens) {
+	let stack = 0;
+	for (let i = 0 ; i < parens.length && stack >= 0; i++) { 
+		if (parens[i] == '(') {
+			stack += 1;
+		}
+		else {
+			stack -= 1;
+		}
+	}
+	return (stack == 0);
+}
+
+console.log(validParentheses(')(()))'));
 
 //SIMPLE PIG LATIN - LVL 5
 
@@ -34,6 +56,33 @@ function pigIt(str) {
 }
 
 console.log(pigIt("Pig latin is cool"));
+
+//PRIMORIAL OF A NUMBER - LVL 6
+
+function isPrime(num) {
+  for (var i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function numPrimorial(k) {
+  let x = 2;
+  let primesFound = 0;
+  let primes = [];
+  while (primesFound !== k) {
+    if (isPrime(x)) {
+      primes.push(x);
+      primesFound++;
+    }
+    x++;
+  }
+  return primes.reduce((a, b) => a * b);
+}
+
+console.log(numPrimorial(5));
 
 //FIND THE MISSING LETTER - LVL 6
 
