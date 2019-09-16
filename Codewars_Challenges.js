@@ -57,6 +57,23 @@ function pigIt(str) {
 
 console.log(pigIt("Pig latin is cool"));
 
+//NUMERICALS OF A STRING - LVL 6
+
+function numericals(s){
+  let array = s.split('');
+  let map = {};
+  let final = '';
+  array.forEach((value) => {
+    if (!map[value]){
+      map[value] = 0;
+    }
+    final += map[value] += 1;
+});
+  return final;
+}
+
+console.log(numbericals("Hello, World!"));
+
 //PRIMORIAL OF A NUMBER - LVL 6
 
 function isPrime(num) {
@@ -917,6 +934,36 @@ function strong(n) {
     return "Not Strong !!";
   }
 }
+
+//MAX MULTIPLE - LVL 7
+
+function maxMultiple(divisor, bound){
+	let array = [];
+	for (let i = 0; i <= bound; i++) {
+		if (i % divisor === 0) {
+			array.push(i);
+		}
+	}
+	return array[array.length - 1];
+}
+
+console.log(maxMultiple(2, 7));
+
+//ODD ONES OUT - LVL 7
+
+function oddOnesOut(nums) {
+	let map = {};
+	nums.forEach((value) => {
+		if (!map[value]) {
+			map[value] = 0;
+		}
+		map[value] += 1;
+	});
+    let final = nums.filter(element => map[element] % 2 === 0);
+	return final;
+}
+
+console.log(oddOnesOut([42, 72, 32, 4, 94, 82, 67, 67]));
 
 //FIND SCREEN SIZE - LVL 7
 
