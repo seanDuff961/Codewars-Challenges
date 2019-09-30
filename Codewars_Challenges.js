@@ -30,7 +30,7 @@ console.log(
 
 function validParentheses(parens) {
 	let stack = 0;
-	for (let i = 0 ; i < parens.length && stack >= 0; i++) { 
+	for (let i = 0 ; i < parens.length && stack >= 0; i++) {
 		if (parens[i] == '(') {
 			stack += 1;
 		}
@@ -57,6 +57,30 @@ function pigIt(str) {
 
 console.log(pigIt("Pig latin is cool"));
 
+//SUM OF TWO INTEGERS - LVL 6
+
+function add (a, b) {
+  if (b == 0) {
+      return a;
+  } else {
+      return add(a ^ b, (a & b) << 1);
+  }
+};
+
+console.log(add(23, 17));
+
+//CAMELCASE METHOD - LVL 6
+
+String.prototype.camelCase = function() {
+  let array = this.split(' ');
+  let final = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i][0] == undefined) continue;
+    final.push(array[i][0].toUpperCase() + array[i].slice(1));
+  }
+  return final.join('');
+}
+
 //NUMERICALS OF A STRING - LVL 6
 
 function numericals(s){
@@ -68,11 +92,11 @@ function numericals(s){
       map[value] = 0;
     }
     final += map[value] += 1;
-});
+  });
   return final;
 }
 
-console.log(numbericals("Hello, World!"));
+console.log(numericals("Hello, World!"));
 
 //PRIMORIAL OF A NUMBER - LVL 6
 
@@ -934,6 +958,24 @@ function strong(n) {
     return "Not Strong !!";
   }
 }
+
+//SPACIFY - LVL 7
+
+function spacify(str) {
+	let final = '';
+	for (let i = 0; i < str.length; i++) {
+	  final += str[i] + ' ';
+	}
+	return final.trimRight();
+}
+console.log(spacify('hello world'));
+
+//STRING ENDS WITH? - LVL 7
+
+function solution(str, ending){
+	return str.slice(str.length - ending.length) === ending;
+}
+console.log(solution('abcde', 'cde'));
 
 //MAX MULTIPLE - LVL 7
 
