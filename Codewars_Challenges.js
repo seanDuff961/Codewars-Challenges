@@ -69,6 +69,27 @@ function add (a, b) {
 
 console.log(add(23, 17));
 
+//MEXICAN WAVE - LVL 6
+
+function wave(string) {
+  let firstArray = string.split('');
+  let finalArray = [];
+  for (let i = 0; i < firstArray.length; i++) {
+    if (firstArray[i] === ' ') {
+      continue;
+    }
+    if (i === 0) {
+      finalArray.push(firstArray[i].toUpperCase() + firstArray.slice(i + 1));
+    }
+    if (i > 0) {
+      finalArray.push(firstArray.slice(0, i) + firstArray[i].toUpperCase() + firstArray.slice(i + 1));
+    }
+  }
+  return finalArray.map((el) => el.replace(/[,]/gi, ''));
+}
+
+console.log(wave("This is a few words"));
+
 //CAMELCASE METHOD - LVL 6
 
 String.prototype.camelCase = function() {
@@ -958,6 +979,44 @@ function strong(n) {
     return "Not Strong !!";
   }
 }
+
+//FACTORIAL - LVL 7
+
+function factorial(n) {
+  if(n < 0 || n > 12){
+    throw new RangeError('')
+  }
+  let array = Array(n).fill(0).map((e, i) => i + 1)
+  if (array.length) return array.reduce((a, b) => a * b);
+  else {
+    return 1;
+  }
+}
+
+console.log(factorial(5));
+
+//FIZZBUZZ - LVL 7
+
+function fizzbuzz(n) {
+  let final = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % 5 === 0 && i % 3 === 0) {
+      final.push('FizzBuzz');
+    }
+    if (i % 3 === 0 && i % 5 !== 0) {
+      final.push('Fizz');
+    }
+    if (i % 5 === 0 && i % 3 !== 0) {
+      final.push('Buzz');
+    }
+    if (i % 3 !== 0 && i % 5 !== 0) {
+      final.push(i);
+    }
+  }
+  return final;
+}
+
+console.log(fizzBuzz(100));
 
 //SPACIFY - LVL 7
 
