@@ -57,6 +57,37 @@ function pigIt(str) {
 
 console.log(pigIt("Pig latin is cool"));
 
+//CHARACTER WITH LONGEST CONSECUTIVE REPETITION - LVL 6
+
+function longestRepetition (str) {
+  if (str.length === 0) {
+     return ['', 0]
+  }
+  let longest = '';
+  let chunk = '';
+  for (let i = 0; i < str.length; i++) {
+    if (i === 0) {
+      if (str[i] === str[i + 1]) {
+        chunk += str[i];
+      }
+    }
+    if (i > 0) {
+      if (str[i] === str[i - 1]) {
+        chunk += str[i];
+      }
+      if (str[i] !== str[i - 1]) {
+        chunk = str[i];
+      }
+      if (chunk.length > longest.length) {
+        longest = chunk;
+      }
+    }
+  }
+  return [longest[0], longest.length];
+}
+
+console.log(longestRepetition('bbbaaabaaaa'));
+
 //SUM OF TWO INTEGERS - LVL 6
 
 function add (a, b) {
@@ -979,6 +1010,32 @@ function strong(n) {
     return "Not Strong !!";
   }
 }
+
+//FIND THE COMBINATION - LVL 7
+
+var countCombinations = function(string, key){
+  return (string.split( new RegExp( key, "gi" ) ).length-1);
+}
+
+console.log(countCombinations('GrEggreGGREGgREG', 'greg'));
+
+//LOVE VS FRIENDSHIP - LVL 7
+
+const alphabet = {'a': 1, 'c': 3, 'b': 2, 'e': 5, 'd': 4, 'g': 7, 'f': 6, 'i': 9, 'h': 8, 'k': 11, 'j': 10, 'm': 13, 'l': 12, 'o': 15, 'n': 14, 'q': 17, 'p': 16, 's': 19, 'r': 18, 'u': 21, 't': 20, 'w': 23, 'v': 22, 'y': 25, 'x': 24, 'z': 26}
+
+function wordsToMarks(string){
+  let array = string.split('');
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
+    let letter = array[i];
+    if (alphabet.hasOwnProperty(letter)) {
+      total += alphabet[letter];
+    }
+  }
+  return total;
+}
+
+console.log(wordsToMarks('attitude'));
 
 //FACTORIAL - LVL 7
 
