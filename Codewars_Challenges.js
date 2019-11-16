@@ -1011,6 +1011,37 @@ function strong(n) {
   }
 }
 
+//MOST MONEY - LVL 6
+
+function mostMoney(students) {
+  let array = [];
+  if (students.length === 1) {
+     return students[0].name;
+  }
+  students.forEach((value, index) => {
+     let total = ((5 * value.fives) + (10 * value.tens) + (20 * value.twenties));
+     array.push([total, value.name]);
+  });
+  array = array.sort((a, b) => b[0] - a[0]);
+  if (array.every((el, i, array) => el[0] === array[0][0])) {
+    return 'all';
+  }
+  else {
+    return array[0][1];
+  }
+}
+
+//REMOVE URL ANCHOR - LVL 7
+
+function removeUrlAnchor(url){
+  if (!url.includes('#')) {
+    return url;
+  }
+  return url.slice(0, url.indexOf('#'));
+}
+
+console.log(removeUrlAnchor('www.codewars.com/katas/#23'));
+
 //FIND THE COMBINATION - LVL 7
 
 var countCombinations = function(string, key){
