@@ -1,3 +1,40 @@
+//SUM DIGITS OF A NUMBER - LVL 7
+
+function sumDigits(number) {
+  let numbers = String(number).split('');
+  if (numbers[0] === '-') {
+    return Number(numbers.slice(1).reduce((a, b) => Number(a) + Number(b)));
+  }
+  else {
+    return Number(numbers.reduce((a, b) => Number(a) + Number(b)));
+  }
+}
+
+console.log(sumDigits(-32));
+
+//COUNT DEAF RATS - LVL 6
+
+var countDeafRats = function(town) {
+  town = town.replace(/[ ]/g, '');
+  let deafCount = 0;
+  let rats = town.split('P').map(segment => segment.match(/.{2}/g) || []);
+  let leftRats = rats[0];
+  let rightRats = rats[1];
+  for (let k = 0; k < leftRats.length; k++) {
+    if (leftRats[k] === 'O~') {
+      deafCount ++;
+    }
+  }
+  for (let l = 0; l < rightRats.length; l++) {
+    if (rightRats[l] === '~O') {
+      deafCount ++;
+    }
+  }
+  return deafCount;
+}
+
+console.log(countDeafRats("~O~O P ~O~O"));
+
 //STRIP COMMENTS - LVL 4
 
 function solution(input, markers) {
