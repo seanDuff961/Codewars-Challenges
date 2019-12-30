@@ -1,3 +1,33 @@
+//DAVE'S GAMBLE - LVL 7
+
+function horses(n) {
+  if (typeof(n) !== 'number') return undefined;
+  if (n < 3) return n;
+  let first = n;
+  let second = n - 1;
+  let third = n - 2;
+  return first * second * third;
+}
+
+console.log(horses(15));
+
+//BACKSPACES IN STRING - LVL 6
+
+function cleanString(s) {
+	let string = '';
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== '#') {
+      string += s[i];
+    }
+    else {
+      string = string.slice(0, string.length -1);
+    }
+  }
+  return string;
+}
+
+console.log(cleanString('abc#d##c'));
+
 //SUM DIGITS OF A NUMBER - LVL 7
 
 function sumDigits(number) {
