@@ -1,3 +1,18 @@
+//YOUR ORDER, PLEASE - LVL 6
+
+function order(words){
+  return words.split(' ').sort((a, b) => {
+  if (a.match(/[1-9]/gi) < b.match(/[1-9]/gi)) {
+    return -1;
+  }
+  if (a.match(/[1-9]/gi) > b.match(/[1-9]/gi)) {
+    return 1;
+  }
+  return 0;
+  }).join(' ');
+}
+console.log('is2 Thi1s T4est 3a');
+
 //DAVE'S GAMBLE - LVL 7
 
 function horses(n) {
