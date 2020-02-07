@@ -1,3 +1,85 @@
+//BLOCKS - LVL 6
+
+function blocks(s) {
+  if (s.length === 0) {
+    return '';
+  }
+  if (!/(.).*\1/.test(s) === true) {
+    let lower = s.match(/[a-z]/g).join('');
+    let upper = s.match(/[A-Z]/g).join('');
+    let numbers = s.match(/[\d]/g).join('');
+    return lower + upper + numbers;
+  }
+  if (!/(.).*\1/.test(s) === false) {
+
+  }
+}
+
+console.log(blocks("21AxBz"));
+
+//MULTIPLES OF 3 OR 5 - LVL 6
+
+function solution(number){
+  let sum = 0;
+  for (let i = 0; i < number; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+console.log(solution(10));
+
+//IS INTEGER ARRAY? - LVL 6
+
+function isIntArray(arr) {
+  if (arr === undefined || arr === null || arr !== arr || arr === '') return false;
+  if (arr === []) return true;
+  for (let i = 0; i < arr.length; i++) {
+    if (!Number.isInteger(arr[i])) return false;
+  }
+  return true;
+}
+console.log(isIntArray([1, 2, 3, NaN]));
+
+//SUM OF MINIMUMS - LVL 7
+
+function sumOfMinimums(arr) {
+  // your code here
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let el = arr[i];
+    sum += el.sort((a, b) => a - b)[0];
+  }
+  return sum;
+}
+
+//SQUARE EVERY DIGIT - LVL 7
+
+function squareDigits(num){
+  let digits = String(num).split('');
+  return Number(digits.map((el, i) => el * el).join(''));
+}
+console.log(squareDigits(9119));
+
+//ABSENT VOWEL - LVL 7
+
+function absentVowel(x){
+  let vowelList = '';
+  let vowels = ['a', 'e', 'i', 'o', 'u'];
+  let indexes = {a: 0, e: 1, i: 2, o: 3, u: 4};
+  for (let i = 0; i < x.length; i++) {
+    if (x[i].match(/[aeiou]/gi)) {
+       vowelList += x[i];
+    }
+  }
+  vowelList = vowelList.split('').filter((v,i) => vowelList.indexOf(v) === i);
+  let missing = vowels.filter(x => !vowelList.includes(x))[0];
+  return indexes[missing];
+}
+console.log(absentVowel('John Doe hs seven red pples under his bsket'));
+
 //YOUR ORDER, PLEASE - LVL 6
 
 function order(words){
