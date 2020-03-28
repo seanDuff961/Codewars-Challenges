@@ -1,3 +1,21 @@
+//DIFFERENCE OF TWO - LVL 6
+
+function twosDifference(input){
+  let sorted = input.sort((a, b) => a - b);
+  let pairs = [];
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] - sorted[i + 1] === - 2) {
+      pairs.push([sorted[i], sorted[i + 1]]);
+    }
+    if (sorted[i] - sorted[i + 2] === - 2) {
+      pairs.push([sorted[i], sorted[i + 2]]);
+    }
+  }
+  return pairs;
+}
+
+console.log(twosDifference([4, 3, 1, 5, 6]));
+
 //BLOCKS - LVL 6
 
 function blocks(s) {
@@ -43,6 +61,18 @@ function isIntArray(arr) {
 }
 console.log(isIntArray([1, 2, 3, NaN]));
 
+//ODD OR EVEN - LVL 7
+
+function oddOrEven(array) {
+  if (array.reduce((a, b) => a + b, 0) % 2 === 0) {
+     return 'even';
+  }
+  else {
+    return 'odd';
+  }
+}
+console.log(oddOrEven([1023, 1, 2]));
+
 //SUM OF MINIMUMS - LVL 7
 
 function sumOfMinimums(arr) {
@@ -54,6 +84,7 @@ function sumOfMinimums(arr) {
   }
   return sum;
 }
+console.log(sumOfMinimums([[7, 9, 8, 6, 2], [6, 3, 5, 4, 3], [5, 8, 7, 4, 5]]));
 
 //SQUARE EVERY DIGIT - LVL 7
 
@@ -2173,3 +2204,5 @@ String.prototype.isUpperCase = function() {
 
   return string1 === string2;
 };
+
+
