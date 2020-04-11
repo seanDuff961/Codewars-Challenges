@@ -1,3 +1,21 @@
+//ARRAY.DIFF - LVL 6
+
+function arrayDiff(a, b) {
+	let aCopy = [...a];
+	let bCopy = [...b];
+	if (String(aCopy.sort((a, b) => a - b)) === String(bCopy.sort((a, b) => a - b))) {
+		return [];
+	}
+	let final = [];
+  for (let i = 0; i < a.length; i++) {
+    if (!b.includes(a[i])) {
+			final.push(a[i]);
+    }
+  }
+  return final;
+}
+console.log(arrayDiff([6,-8,-6,10,-1,-4,-8,13,14,15,17,-20,14,14,-17,-19,16,9,-15],[-15,-4,-6,15,6]));
+
 //DIFFERENCE OF TWO - LVL 6
 
 function twosDifference(input){
@@ -60,6 +78,122 @@ function isIntArray(arr) {
   return true;
 }
 console.log(isIntArray([1, 2, 3, NaN]));
+
+//Break camelCase - LVL 6
+
+function solution(string) {
+  let arrayOfWords = string.split(/[A-Z]/);
+  let arrayOfUppers = [];
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[A-Z]/)) {
+      arrayOfUppers.push(string[i]);
+    }
+  }
+  let final = [];
+  final.push(arrayOfWords[0]);
+  for (let i = 1; i < arrayOfWords.length; i++) {
+    final.push(arrayOfUppers[i - 1] + arrayOfWords[i]);
+  }
+  return final.join(' ');
+}
+
+//MORE ZEROS THAN ONES - LVL 6
+
+function moreZeros(s){
+
+  let initial = s.split('');
+
+  let arrayOfBinaries = s.split('').map(function (char) {
+    return char.charCodeAt(0).toString(2);
+  });
+
+  let second = [];
+
+  for (let i = 0; i < arrayOfBinaries.length; i++) {
+    let el = arrayOfBinaries[i];
+    let zeroCount = 0;
+    let oneCount = 0;
+    for (let j = 0; j < el.length; j++) {
+      if (el[j] === '0') {
+        zeroCount ++;
+      }
+      if (el[j] === '1') {
+        oneCount ++;
+      }
+    }
+    if (zeroCount > oneCount) {
+      second.push(el);
+    }
+  }
+
+  let indexes = [];
+
+  for (let k = 0; k < arrayOfBinaries.length; k++) {
+    if (second.includes(arrayOfBinaries[k])) {
+      indexes.push(k);
+    }
+  }
+
+  let final = [];
+
+  for (let l = 0; l < s.length; l++) {
+    if (indexes.includes(l)) {
+      final.push(s[l]);
+    }
+  }
+
+  return Array.from(new Set(final));
+
+}
+
+//RESPONSIBLE DRINKING - LVL 7
+
+function hydrate(s) {
+  let total = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i].match(/^\d+$/)) {
+      total += Number(s[i]);
+    }
+  }
+  if (total === 1) return '1 glass of water';
+  else {
+    return `${total}` + ' glasses of water';
+  }
+}
+
+//esreveR - LVL 7
+
+reverse = function(array) {
+  let newArray = [];
+  while (array.length) {
+    newArray.push(array.pop());
+  }
+  return newArray;
+}
+
+//FIND THE AREA OF THE RECTANGLE! - LVL 7
+
+function area(d,l) {
+  if (d <= l) return 'Not a rectangle';
+  let diagonal = Math.pow(d, 2);
+  let side = Math.pow(l, 2);
+  let otherSide = Math.sqrt(diagonal - side);
+  let final = (otherSide * l);
+  return Number(final.toFixed(2));
+}
+console.log(area(83, 22));
+
+//FIND ALL OCCURRENCES OF AN ELEMENT IN AN ARRAY - LVL 7
+
+const findAll = (array, n) => {
+  let indexes = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === n) {
+      indexes.push(i);
+    }
+  }
+  return indexes;
+}
 
 //ODD OR EVEN - LVL 7
 
