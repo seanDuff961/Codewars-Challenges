@@ -34,7 +34,7 @@
 // }
 // console.log(blocks('abacad'));
 
-function sumOfMinimums(arr) {
+/* function sumOfMinimums(arr) {
   // your code here
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -42,7 +42,20 @@ function sumOfMinimums(arr) {
     sum += el.sort((a, b) => a - b)[0];
   }
   return sum;
+} */
+
+function replacement(a){
+  let sorted = a.sort((a, b) => a - b);
+  if (sorted[sorted.length - 1] === 1){
+    sorted.pop();
+    sorted.push(2);
+    return sorted;
+  }
+  sorted.unshift(1);
+  return sorted.slice(0, sorted.length -1);
 }
+
+console.log(replacement([1, 1, 1, 1]));
 
 
 

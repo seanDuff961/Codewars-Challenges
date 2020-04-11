@@ -1,3 +1,16 @@
+//REPLACEMENT - LVL 6
+
+function replacement(a){
+  let sorted = a.sort((a, b) => a - b);
+  if (sorted[sorted.length - 1] === 1){
+    sorted.pop();
+    sorted.push(2);
+    return sorted;
+  }
+  sorted.unshift(1);
+  return sorted.slice(0, sorted.length -1);
+}
+
 //ARRAY.DIFF - LVL 6
 
 function arrayDiff(a, b) {
