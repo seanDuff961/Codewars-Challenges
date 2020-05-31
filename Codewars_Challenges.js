@@ -1,3 +1,33 @@
+//THE VOWEL CODE - LVL 6
+
+function encode(string) {
+  let myList = {a:1, e:2, i:3, o:4, u:5};
+  let myString = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[aeiou]/g)) {
+      myString += myList[string[i]];
+    }
+    else {
+      myString += string[i];
+    }
+  }
+  return myString;
+}
+
+function decode(string) {
+  let myList = {1:'a', 2:'e', 3:'i', 4:'o', 5:'u'}; 
+  let myString = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[0-9]/g)) {
+      myString += myList[string[i]];
+    }
+    else {
+      myString += string[i];
+    }
+  }
+  return myString;
+}
+
 //REPLACEMENT - LVL 6
 
 function replacement(a){
