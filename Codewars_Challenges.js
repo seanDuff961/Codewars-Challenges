@@ -189,6 +189,17 @@ function moreZeros(s){
 
 }
 
+//HALVING SUM - LVL 7
+
+function halvingSum(n) {
+  let sum = n;
+  while (n > 0) {
+    sum += Math.floor(n / 2);
+    n = Math.floor(n / 2);
+  }
+  return sum;
+}
+
 //RESPONSIBLE DRINKING - LVL 7
 
 function hydrate(s) {
