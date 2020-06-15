@@ -2393,4 +2393,22 @@ String.prototype.isUpperCase = function() {
   return string1 === string2;
 };
 
+//GRASSHOPPER - CREATE THE ROOMS
 
+var rooms = {
+  myRoom1: {
+    name: 'room1',
+    description: 'this is the first room',
+    completed: 'yes'
+  },
+  myRoom2: {
+    name: 'room2',
+    description: 'this is the second room',
+    completed: 'yes'
+  },
+  myRoom3: {
+    name: 'room3',
+    description: 'this is the third room',
+    completed: 'no'
+  }
+}
