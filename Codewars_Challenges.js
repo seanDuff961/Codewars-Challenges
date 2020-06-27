@@ -1414,6 +1414,21 @@ function mostMoney(students) {
   }
 }
 
+//INDEXED CAPITALIZATION - LVL 7
+
+function capitalize(s,arr){
+  let newString = "";
+  for (let i = 0; i < s.length; i++) {
+    if (arr.includes(i)) {
+      newString += (s[i].toUpperCase());
+    }
+    else {
+      newString += s[i]
+    }
+  }
+  return newString;
+};
+
 //REMOVE URL ANCHOR - LVL 7
 
 function removeUrlAnchor(url){
