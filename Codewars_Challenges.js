@@ -25,6 +25,8 @@ function longest(str) {
   return longest;
 }
 
+console.log(longest('zjmibuzcimfrpriciuspkfvybkusdjeymcbrkozvdquc'));
+
 //THE VOWEL CODE - LVL 6
 
 function encode(string) {
