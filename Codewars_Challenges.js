@@ -1,3 +1,11 @@
+//DUBSTEP - LVL 6
+
+function songDecoder(song){
+  return song.split('WUB').filter((e, i) => e !== '').join(' ');
+}
+
+console.log(songDecoder('WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB'));
+
 //SIMPLE FREQUENCY SORT - LVL 6
 
 function solve(data) {
