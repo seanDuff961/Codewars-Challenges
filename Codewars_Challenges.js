@@ -1,3 +1,43 @@
+//LET'S RECYCLE! - LVL 6
+
+function recycle(array) {
+  let paper = []; let glass = []; let organic = []; let plastic = [];
+  for (let i = 0; i < array.length; i++) {
+    let obj = array[i];
+    if (obj.material === 'paper') {
+      paper.push(obj.type);
+    }
+    if (obj.material === 'glass') {
+      glass.push(obj.type);
+    }
+    if (obj.material === 'organic') {
+      organic.push(obj.type);
+    }
+    if (obj.material === 'plastic') {
+      plastic.push(obj.type);
+    }
+    if (obj.secondMaterial === 'paper') {
+      paper.push(obj.type);
+    }
+    if (obj.secondMaterial === 'glass') {
+      glass.push(obj.type);
+    }
+    if (obj.secondMaterial === 'organic') {
+      organic.push(obj.type);
+    }
+    if (obj.secondMaterial === 'plastic') {
+      plastic.push(obj.type);
+    }
+  }
+  return [paper, glass, organic, plastic];
+}
+
+console.log(recycle([{
+  type: 'bottle',
+  material: 'glass',
+  secondMaterial: 'paper'
+}]));
+
 //STRING ARRAY DUPLICATES - LVL 6
 
 function dup(s) {
