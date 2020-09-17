@@ -1,43 +1,50 @@
-function solve(data) {
-  let frequency = data.reduce((r, e) => {
-    if (!r[e]) r[e] = 1;
-    else r[e]++;
-    return r;
-  }, {})
+// function dup(s) {
+//   let final = [];
+//   for (let i = 0; i < s.length; i++) {
+//     let word = s[i];
+//     let oneWord = '';
+//     for (let j = 0; j < word.length; j++) {
+//       if (word[j] !== word[j + 1]) {
+//         oneWord += word[j];
+//       }
+//       else {
+//         continue;
+//       }
+//     }
+//     final.push(oneWord);
+//   }
+//   return final;
+// }
+// console.log(dup(["kelless","keenness"]));
 
-  return [...data].sort((a, b) => {
-    return frequency[b] - frequency[a] || a - b
-  })
-}
+// function dup(s) {
+//   return s.map(x => x.replace(/(.)\1+/g,'$1'))
+// }
+// console.log(dup(["kelless","keenness"]));
 
-console.log(solve([1,2,3,0,5,0,1,6,8,8,6,9,1]));
-
-//https://www.codewars.com/kata/5ef9ca8b76be6d001d5e1c3e/train/javascript
-
-function encode(text) {
-  let asciiArray = [];
-  for (let i = 0; i < text.length; i++) {
-    asciiArray += text[i].charCodeAt();
-  }
-  let binaryString = '';
-  for (let j = 0; j < asciiArray.length; j++) {
-    binaryString += asciiArray[j].toString(2);
-  }
-  let finalString = '';
-  for (let k = 0; k < binaryString.length; k++) {
-    if (binaryString[k] === '0') {
-      finalString += '000';
+function replace (s) {
+  let myArray = s.split(' ');
+  let final = [];
+  for (let i = 0; i < myArray.length; i++) {
+    let segment = myArray[i];
+    console.log('finallll', final);
+    if (segment.match(/[.]/g)) {
+      final.push(segment.replace(/\(?(\d{3})[-.)]\d{3}[-.]\d{4}/g, '$1.XXX.XXXX'));
+      continue;
     }
-    if (binaryString[k] === '1') {
-      finalString += '111';
+    if (segment.match(/[-]/g)) {
+      final.push(segment.replace(/\(?(\d{3})[-.)]\d{3}[-.]\d{4}/g, '$1-XXX-XXXX'));
+      continue;
+    }
+    if (segment.match(/[(]/g)) {
+      final.push(segment.replace(/\(?(\d{3})[-.)]\d{3}[-.]\d{4}/g, '($1) XXX-XXXX'));
+      continue;
     }
     else {
-      finalString += binaryString[k];
+      final.push(segment);
     }
   }
-  return finalString;
+  return final.join(' ');
 }
 
-function decode(bits) {
-  return text;
-}
+console.log(replace('917-555-1234 something 646.555.1234 something (212) 867-5509'));

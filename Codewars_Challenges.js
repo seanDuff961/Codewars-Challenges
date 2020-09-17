@@ -1,3 +1,58 @@
+//STRING ARRAY DUPLICATES - LVL 6
+
+function dup(s) {
+  let final = [];
+  for (let i = 0; i < s.length; i++) {
+    let word = s[i];
+    let oneWord = '';
+    for (let j = 0; j < word.length; j++) {
+      if (word[j] !== word[j + 1]) {
+        oneWord += word[j];
+      }
+      else {
+        continue;
+      }
+    }
+    final.push(oneWord);
+  }
+  return final;
+}
+
+console.log(dup(["kelless","keenness"]));
+
+//SIMPLE EQUATION REVERSAL - LVL 7
+
+function solve(eq){
+  let arrayOfThings = [];
+  let segment = '';
+  for (let i = 0; i < eq.length; i++) {
+    let operator = '';
+    if (eq[i].match(/[*+/-]/g)) {
+      operator += eq[i];
+      arrayOfThings.push(segment);
+      arrayOfThings.push(operator);
+      segment = '';
+    }
+    else {
+      segment += eq[i];
+    }
+    if (i === eq.length - 1) {
+      arrayOfThings.push(segment);
+    }
+  }
+  return arrayOfThings.reverse().join().replace(/[,]/g, '');
+}
+
+console.log(solve("a+b-c/d*30"));
+
+//or
+
+function solve(eq){
+  return eq.split(/([*\+\-\/])/).reverse().join('');
+}
+
+console.log(solve("a+b-c/d*30"));
+
 //DUBSTEP - LVL 6
 
 function songDecoder(song){
