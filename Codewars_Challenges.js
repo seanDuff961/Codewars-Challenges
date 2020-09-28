@@ -1,3 +1,39 @@
+//Eviternity Numbers - LVL 7
+
+function solve(a, b) {
+  let eviternityNumbers = [];
+  for (let i = a; i < b; i++) {
+    if (!String(i).match(/[^358]/)) {
+      eviternityNumbers.push(i);
+    }
+  }
+  eviternityNumbers = eviternityNumbers.filter((a) => String(a).match(/[8]/));
+  let final = [];
+  for (let j = 0; j < eviternityNumbers.length; j++) {
+    let number = eviternityNumbers[j];
+    let eightCount = 0;
+    let fiveCount = 0;
+    let threeCount = 0;
+    for (let k = 0; k < String(number).length; k++) {
+      let digit = String(number)[k];
+      if (digit === "8") {
+        eightCount++;
+      }
+      if (digit === "5") {
+        fiveCount++;
+      }
+      if (digit === "3") {
+        threeCount++;
+      }
+    }
+    if (eightCount >= fiveCount && fiveCount >= threeCount) {
+      final.push(number);
+    }
+  }
+  return final.length;
+}
+console.log(solve(0, 100));
+
 //String Doubles - LVL 7
 
 function doubles(s) {
