@@ -1,42 +1,87 @@
+//String Doubles - LVL 7
+
+function doubles(s) {
+  const result = [];
+  s.split("").forEach((c) => {
+    if (result[result.length - 1] === c) {
+      result.pop();
+    } else {
+      result.push(c);
+    }
+  });
+  return result.join("");
+}
+
+console.log(doubles("abbcccdddda"));
+
+//Sum of Array Singles - LVL 7
+
+function repeats(arr) {
+  let map = {};
+  let myArray = String(arr).split(",");
+  myArray.forEach((v, i) => {
+    if (!map[v]) {
+      map[v] = 0;
+    }
+    map[v] += 1;
+  });
+  let singles = [];
+  for (let key in map) {
+    if (map[key] === 1) {
+      singles.push(key);
+    }
+  }
+  return singles.reduce((a, b) => Number(a) + Number(b), 0);
+}
+
+console.log(repeats([4, 5, 7, 5, 4, 8]));
+
 //LET'S RECYCLE! - LVL 6
 
 function recycle(array) {
-  let paper = []; let glass = []; let organic = []; let plastic = [];
+  let paper = [];
+  let glass = [];
+  let organic = [];
+  let plastic = [];
   for (let i = 0; i < array.length; i++) {
     let obj = array[i];
-    if (obj.material === 'paper') {
+    if (obj.material === "paper") {
       paper.push(obj.type);
     }
-    if (obj.material === 'glass') {
+    if (obj.material === "glass") {
       glass.push(obj.type);
     }
-    if (obj.material === 'organic') {
+    if (obj.material === "organic") {
       organic.push(obj.type);
     }
-    if (obj.material === 'plastic') {
+    if (obj.material === "plastic") {
       plastic.push(obj.type);
     }
-    if (obj.secondMaterial === 'paper') {
+    if (obj.secondMaterial === "paper") {
       paper.push(obj.type);
     }
-    if (obj.secondMaterial === 'glass') {
+    if (obj.secondMaterial === "glass") {
       glass.push(obj.type);
     }
-    if (obj.secondMaterial === 'organic') {
+    if (obj.secondMaterial === "organic") {
       organic.push(obj.type);
     }
-    if (obj.secondMaterial === 'plastic') {
+    if (obj.secondMaterial === "plastic") {
       plastic.push(obj.type);
     }
   }
   return [paper, glass, organic, plastic];
 }
 
-console.log(recycle([{
-  type: 'bottle',
-  material: 'glass',
-  secondMaterial: 'paper'
-}]));
+console.log(
+  recycle([
+    {
+      type: "bottle",
+      material: "glass",
+      secondMaterial: "paper",
+    },
+  ])
+);
 
 //STRING ARRAY DUPLICATES - LVL 6
 
@@ -44,12 +89,11 @@ function dup(s) {
   let final = [];
   for (let i = 0; i < s.length; i++) {
     let word = s[i];
-    let oneWord = '';
+    let oneWord = "";
     for (let j = 0; j < word.length; j++) {
       if (word[j] !== word[j + 1]) {
         oneWord += word[j];
-      }
-      else {
+      } else {
         continue;
       }
     }
@@ -58,48 +102,53 @@ function dup(s) {
   return final;
 }
 
-console.log(dup(["kelless","keenness"]));
+console.log(dup(["kelless", "keenness"]));
 
 //SIMPLE EQUATION REVERSAL - LVL 7
 
-function solve(eq){
+function solve(eq) {
   let arrayOfThings = [];
-  let segment = '';
+  let segment = "";
   for (let i = 0; i < eq.length; i++) {
-    let operator = '';
+    let operator = "";
     if (eq[i].match(/[*+/-]/g)) {
       operator += eq[i];
       arrayOfThings.push(segment);
       arrayOfThings.push(operator);
-      segment = '';
-    }
-    else {
+      segment = "";
+    } else {
       segment += eq[i];
     }
     if (i === eq.length - 1) {
       arrayOfThings.push(segment);
     }
   }
-  return arrayOfThings.reverse().join().replace(/[,]/g, '');
+  return arrayOfThings.reverse().join().replace(/[,]/g, "");
 }
 
 console.log(solve("a+b-c/d*30"));
 
 //or
 
-function solve(eq){
-  return eq.split(/([*\+\-\/])/).reverse().join('');
+function solve(eq) {
+  return eq
+    .split(/([*\+\-\/])/)
+    .reverse()
+    .join("");
 }
 
 console.log(solve("a+b-c/d*30"));
 
 //DUBSTEP - LVL 6
 
-function songDecoder(song){
-  return song.split('WUB').filter((e, i) => e !== '').join(' ');
+function songDecoder(song) {
+  return song
+    .split("WUB")
+    .filter((e, i) => e !== "")
+    .join(" ");
 }
 
-console.log(songDecoder('WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB'));
+console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"));
 
 //SIMPLE FREQUENCY SORT - LVL 6
 
@@ -108,33 +157,58 @@ function solve(data) {
     if (!r[e]) r[e] = 1;
     else r[e]++;
     return r;
-  }, {})
+  }, {});
 
   return [...data].sort((a, b) => {
-    return frequency[b] - frequency[a] || a - b
-  })
+    return frequency[b] - frequency[a] || a - b;
+  });
 }
 
-console.log(solve([1,2,3,0,5,0,1,6,8,8,6,9,1]));
+console.log(solve([1, 2, 3, 0, 5, 0, 1, 6, 8, 8, 6, 9, 1]));
 
 //LONGEST ALPHABETICAL SUBSTRING - LVL 6
 
 function longest(str) {
   const alphabet = {
-    'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8,
-    'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16,
-    'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25
+    a: 0,
+    b: 1,
+    c: 2,
+    d: 3,
+    e: 4,
+    f: 5,
+    g: 6,
+    h: 7,
+    i: 8,
+    j: 9,
+    k: 10,
+    l: 11,
+    m: 12,
+    n: 13,
+    o: 14,
+    p: 15,
+    q: 16,
+    r: 17,
+    s: 18,
+    t: 19,
+    u: 20,
+    v: 21,
+    w: 22,
+    x: 23,
+    y: 24,
+    z: 25,
   };
   let longest = str[0];
-  let word = '';
+  let word = "";
   for (let i = 1; i < str.length; i++) {
     if (i === 1) {
       word = str[0];
     }
-    if (alphabet[str[i]] > alphabet[str[i - 1]] || alphabet[str[i]] === alphabet[str[i - 1]]) {
+    if (
+      alphabet[str[i]] > alphabet[str[i - 1]] ||
+      alphabet[str[i]] === alphabet[str[i - 1]]
+    ) {
       word += str[i];
-    }
-    else {
+    } else {
       word = str[i];
     }
     if (word.length > longest.length) {
@@ -144,18 +218,17 @@ function longest(str) {
   return longest;
 }
 
-console.log(longest('zjmibuzcimfrpriciuspkfvybkusdjeymcbrkozvdquc'));
+console.log(longest("zjmibuzcimfrpriciuspkfvybkusdjeymcbrkozvdquc"));
 
 //THE VOWEL CODE - LVL 6
 
 function encode(string) {
-  let myList = {a:1, e:2, i:3, o:4, u:5};
-  let myString = '';
+  let myList = { a: 1, e: 2, i: 3, o: 4, u: 5 };
+  let myString = "";
   for (let i = 0; i < string.length; i++) {
     if (string[i].match(/[aeiou]/g)) {
       myString += myList[string[i]];
-    }
-    else {
+    } else {
       myString += string[i];
     }
   }
@@ -163,13 +236,12 @@ function encode(string) {
 }
 
 function decode(string) {
-  let myList = {1:'a', 2:'e', 3:'i', 4:'o', 5:'u'}; 
-  let myString = '';
+  let myList = { 1: "a", 2: "e", 3: "i", 4: "o", 5: "u" };
+  let myString = "";
   for (let i = 0; i < string.length; i++) {
     if (string[i].match(/[0-9]/g)) {
       myString += myList[string[i]];
-    }
-    else {
+    } else {
       myString += string[i];
     }
   }
@@ -178,45 +250,72 @@ function decode(string) {
 
 //REPLACEMENT - LVL 6
 
-function replacement(a){
+function replacement(a) {
   let sorted = a.sort((a, b) => a - b);
-  if (sorted[sorted.length - 1] === 1){
+  if (sorted[sorted.length - 1] === 1) {
     sorted.pop();
     sorted.push(2);
     return sorted;
   }
   sorted.unshift(1);
-  return sorted.slice(0, sorted.length -1);
+  return sorted.slice(0, sorted.length - 1);
 }
 
 //ARRAY.DIFF - LVL 6
 
 function arrayDiff(a, b) {
-	let aCopy = [...a];
-	let bCopy = [...b];
-	if (String(aCopy.sort((a, b) => a - b)) === String(bCopy.sort((a, b) => a - b))) {
-		return [];
-	}
-	let final = [];
+  let aCopy = [...a];
+  let bCopy = [...b];
+  if (
+    String(aCopy.sort((a, b) => a - b)) === String(bCopy.sort((a, b) => a - b))
+  ) {
+    return [];
+  }
+  let final = [];
   for (let i = 0; i < a.length; i++) {
     if (!b.includes(a[i])) {
-			final.push(a[i]);
+      final.push(a[i]);
     }
   }
   return final;
 }
-console.log(arrayDiff([6,-8,-6,10,-1,-4,-8,13,14,15,17,-20,14,14,-17,-19,16,9,-15],[-15,-4,-6,15,6]));
+console.log(
+  arrayDiff(
+    [
+      6,
+      -8,
+      -6,
+      10,
+      -1,
+      -4,
+      -8,
+      13,
+      14,
+      15,
+      17,
+      -20,
+      14,
+      14,
+      -17,
+      -19,
+      16,
+      9,
+      -15,
+    ],
+    [-15, -4, -6, 15, 6]
+  )
+);
 
 //DIFFERENCE OF TWO - LVL 6
 
-function twosDifference(input){
+function twosDifference(input) {
   let sorted = input.sort((a, b) => a - b);
   let pairs = [];
   for (let i = 0; i < sorted.length; i++) {
-    if (sorted[i] - sorted[i + 1] === - 2) {
+    if (sorted[i] - sorted[i + 1] === -2) {
       pairs.push([sorted[i], sorted[i + 1]]);
     }
-    if (sorted[i] - sorted[i + 2] === - 2) {
+    if (sorted[i] - sorted[i + 2] === -2) {
       pairs.push([sorted[i], sorted[i + 2]]);
     }
   }
@@ -229,16 +328,15 @@ console.log(twosDifference([4, 3, 1, 5, 6]));
 
 function blocks(s) {
   if (s.length === 0) {
-    return '';
+    return "";
   }
   if (!/(.).*\1/.test(s) === true) {
-    let lower = s.match(/[a-z]/g).join('');
-    let upper = s.match(/[A-Z]/g).join('');
-    let numbers = s.match(/[\d]/g).join('');
+    let lower = s.match(/[a-z]/g).join("");
+    let upper = s.match(/[A-Z]/g).join("");
+    let numbers = s.match(/[\d]/g).join("");
     return lower + upper + numbers;
   }
   if (!/(.).*\1/.test(s) === false) {
-
   }
 }
 
@@ -246,7 +344,7 @@ console.log(blocks("21AxBz"));
 
 //MULTIPLES OF 3 OR 5 - LVL 6
 
-function solution(number){
+function solution(number) {
   let sum = 0;
   for (let i = 0; i < number; i++) {
     if (i % 3 === 0 || i % 5 === 0) {
@@ -261,7 +359,8 @@ console.log(solution(10));
 //IS INTEGER ARRAY? - LVL 6
 
 function isIntArray(arr) {
-  if (arr === undefined || arr === null || arr !== arr || arr === '') return false;
+  if (arr === undefined || arr === null || arr !== arr || arr === "")
+    return false;
   if (arr === []) return true;
   for (let i = 0; i < arr.length; i++) {
     if (!Number.isInteger(arr[i])) return false;
@@ -285,16 +384,15 @@ function solution(string) {
   for (let i = 1; i < arrayOfWords.length; i++) {
     final.push(arrayOfUppers[i - 1] + arrayOfWords[i]);
   }
-  return final.join(' ');
+  return final.join(" ");
 }
 
 //MORE ZEROS THAN ONES - LVL 6
 
-function moreZeros(s){
+function moreZeros(s) {
+  let initial = s.split("");
 
-  let initial = s.split('');
-
-  let arrayOfBinaries = s.split('').map(function (char) {
+  let arrayOfBinaries = s.split("").map(function (char) {
     return char.charCodeAt(0).toString(2);
   });
 
@@ -305,11 +403,11 @@ function moreZeros(s){
     let zeroCount = 0;
     let oneCount = 0;
     for (let j = 0; j < el.length; j++) {
-      if (el[j] === '0') {
-        zeroCount ++;
+      if (el[j] === "0") {
+        zeroCount++;
       }
-      if (el[j] === '1') {
-        oneCount ++;
+      if (el[j] === "1") {
+        oneCount++;
       }
     }
     if (zeroCount > oneCount) {
@@ -334,7 +432,6 @@ function moreZeros(s){
   }
 
   return Array.from(new Set(final));
-
 }
 
 //HALVING SUM - LVL 7
@@ -357,30 +454,30 @@ function hydrate(s) {
       total += Number(s[i]);
     }
   }
-  if (total === 1) return '1 glass of water';
+  if (total === 1) return "1 glass of water";
   else {
-    return `${total}` + ' glasses of water';
+    return `${total}` + " glasses of water";
   }
 }
 
 //esreveR - LVL 7
 
-reverse = function(array) {
+reverse = function (array) {
   let newArray = [];
   while (array.length) {
     newArray.push(array.pop());
   }
   return newArray;
-}
+};
 
 //FIND THE AREA OF THE RECTANGLE! - LVL 7
 
-function area(d,l) {
-  if (d <= l) return 'Not a rectangle';
+function area(d, l) {
+  if (d <= l) return "Not a rectangle";
   let diagonal = Math.pow(d, 2);
   let side = Math.pow(l, 2);
   let otherSide = Math.sqrt(diagonal - side);
-  let final = (otherSide * l);
+  let final = otherSide * l;
   return Number(final.toFixed(2));
 }
 console.log(area(83, 22));
@@ -395,16 +492,15 @@ const findAll = (array, n) => {
     }
   }
   return indexes;
-}
+};
 
 //ODD OR EVEN - LVL 7
 
 function oddOrEven(array) {
   if (array.reduce((a, b) => a + b, 0) % 2 === 0) {
-     return 'even';
-  }
-  else {
-    return 'odd';
+    return "even";
+  } else {
+    return "odd";
   }
 }
 console.log(oddOrEven([1023, 1, 2]));
@@ -420,52 +516,61 @@ function sumOfMinimums(arr) {
   }
   return sum;
 }
-console.log(sumOfMinimums([[7, 9, 8, 6, 2], [6, 3, 5, 4, 3], [5, 8, 7, 4, 5]]));
+console.log(
+  sumOfMinimums([
+    [7, 9, 8, 6, 2],
+    [6, 3, 5, 4, 3],
+    [5, 8, 7, 4, 5],
+  ])
+);
 
 //SQUARE EVERY DIGIT - LVL 7
 
-function squareDigits(num){
-  let digits = String(num).split('');
-  return Number(digits.map((el, i) => el * el).join(''));
+function squareDigits(num) {
+  let digits = String(num).split("");
+  return Number(digits.map((el, i) => el * el).join(""));
 }
 console.log(squareDigits(9119));
 
 //ABSENT VOWEL - LVL 7
 
-function absentVowel(x){
-  let vowelList = '';
-  let vowels = ['a', 'e', 'i', 'o', 'u'];
-  let indexes = {a: 0, e: 1, i: 2, o: 3, u: 4};
+function absentVowel(x) {
+  let vowelList = "";
+  let vowels = ["a", "e", "i", "o", "u"];
+  let indexes = { a: 0, e: 1, i: 2, o: 3, u: 4 };
   for (let i = 0; i < x.length; i++) {
     if (x[i].match(/[aeiou]/gi)) {
-       vowelList += x[i];
+      vowelList += x[i];
     }
   }
-  vowelList = vowelList.split('').filter((v,i) => vowelList.indexOf(v) === i);
-  let missing = vowels.filter(x => !vowelList.includes(x))[0];
+  vowelList = vowelList.split("").filter((v, i) => vowelList.indexOf(v) === i);
+  let missing = vowels.filter((x) => !vowelList.includes(x))[0];
   return indexes[missing];
 }
-console.log(absentVowel('John Doe hs seven red pples under his bsket'));
+console.log(absentVowel("John Doe hs seven red pples under his bsket"));
 
 //YOUR ORDER, PLEASE - LVL 6
 
-function order(words){
-  return words.split(' ').sort((a, b) => {
-  if (a.match(/[1-9]/gi) < b.match(/[1-9]/gi)) {
-    return -1;
-  }
-  if (a.match(/[1-9]/gi) > b.match(/[1-9]/gi)) {
-    return 1;
-  }
-  return 0;
-  }).join(' ');
+function order(words) {
+  return words
+    .split(" ")
+    .sort((a, b) => {
+      if (a.match(/[1-9]/gi) < b.match(/[1-9]/gi)) {
+        return -1;
+      }
+      if (a.match(/[1-9]/gi) > b.match(/[1-9]/gi)) {
+        return 1;
+      }
+      return 0;
+    })
+    .join(" ");
 }
-console.log('is2 Thi1s T4est 3a');
+console.log("is2 Thi1s T4est 3a");
 
 //DAVE'S GAMBLE - LVL 7
 
 function horses(n) {
-  if (typeof(n) !== 'number') return undefined;
+  if (typeof n !== "number") return undefined;
   if (n < 3) return n;
   let first = n;
   let second = n - 1;
@@ -478,28 +583,26 @@ console.log(horses(15));
 //BACKSPACES IN STRING - LVL 6
 
 function cleanString(s) {
-	let string = '';
+  let string = "";
   for (let i = 0; i < s.length; i++) {
-    if (s[i] !== '#') {
+    if (s[i] !== "#") {
       string += s[i];
-    }
-    else {
-      string = string.slice(0, string.length -1);
+    } else {
+      string = string.slice(0, string.length - 1);
     }
   }
   return string;
 }
 
-console.log(cleanString('abc#d##c'));
+console.log(cleanString("abc#d##c"));
 
 //SUM DIGITS OF A NUMBER - LVL 7
 
 function sumDigits(number) {
-  let numbers = String(number).split('');
-  if (numbers[0] === '-') {
+  let numbers = String(number).split("");
+  if (numbers[0] === "-") {
     return Number(numbers.slice(1).reduce((a, b) => Number(a) + Number(b)));
-  }
-  else {
+  } else {
     return Number(numbers.reduce((a, b) => Number(a) + Number(b)));
   }
 }
@@ -508,24 +611,24 @@ console.log(sumDigits(-32));
 
 //COUNT DEAF RATS - LVL 6
 
-var countDeafRats = function(town) {
-  town = town.replace(/[ ]/g, '');
+var countDeafRats = function (town) {
+  town = town.replace(/[ ]/g, "");
   let deafCount = 0;
-  let rats = town.split('P').map(segment => segment.match(/.{2}/g) || []);
+  let rats = town.split("P").map((segment) => segment.match(/.{2}/g) || []);
   let leftRats = rats[0];
   let rightRats = rats[1];
   for (let k = 0; k < leftRats.length; k++) {
-    if (leftRats[k] === 'O~') {
-      deafCount ++;
+    if (leftRats[k] === "O~") {
+      deafCount++;
     }
   }
   for (let l = 0; l < rightRats.length; l++) {
-    if (rightRats[l] === '~O') {
-      deafCount ++;
+    if (rightRats[l] === "~O") {
+      deafCount++;
     }
   }
   return deafCount;
-}
+};
 
 console.log(countDeafRats("~O~O P ~O~O"));
 
@@ -553,26 +656,25 @@ function solution(input, markers) {
 console.log(
   solution("apples, plums % and bananas\npears\noranges !applesauce", [
     "%",
-    "!"
+    "!",
   ])
 );
 
 //VALID PARENTHESES - LVL 5
 
 function validParentheses(parens) {
-	let stack = 0;
-	for (let i = 0 ; i < parens.length && stack >= 0; i++) {
-		if (parens[i] == '(') {
-			stack += 1;
-		}
-		else {
-			stack -= 1;
-		}
-	}
-	return (stack == 0);
+  let stack = 0;
+  for (let i = 0; i < parens.length && stack >= 0; i++) {
+    if (parens[i] == "(") {
+      stack += 1;
+    } else {
+      stack -= 1;
+    }
+  }
+  return stack == 0;
 }
 
-console.log(validParentheses(')(()))'));
+console.log(validParentheses(")(()))"));
 
 //SIMPLE PIG LATIN - LVL 5
 
@@ -590,12 +692,12 @@ console.log(pigIt("Pig latin is cool"));
 
 //CHARACTER WITH LONGEST CONSECUTIVE REPETITION - LVL 6
 
-function longestRepetition (str) {
+function longestRepetition(str) {
   if (str.length === 0) {
-     return ['', 0]
+    return ["", 0];
   }
-  let longest = '';
-  let chunk = '';
+  let longest = "";
+  let chunk = "";
   for (let i = 0; i < str.length; i++) {
     if (i === 0) {
       if (str[i] === str[i + 1]) {
@@ -617,61 +719,65 @@ function longestRepetition (str) {
   return [longest[0], longest.length];
 }
 
-console.log(longestRepetition('bbbaaabaaaa'));
+console.log(longestRepetition("bbbaaabaaaa"));
 
 //SUM OF TWO INTEGERS - LVL 6
 
-function add (a, b) {
+function add(a, b) {
   if (b == 0) {
-      return a;
+    return a;
   } else {
-      return add(a ^ b, (a & b) << 1);
+    return add(a ^ b, (a & b) << 1);
   }
-};
+}
 
 console.log(add(23, 17));
 
 //MEXICAN WAVE - LVL 6
 
 function wave(string) {
-  let firstArray = string.split('');
+  let firstArray = string.split("");
   let finalArray = [];
   for (let i = 0; i < firstArray.length; i++) {
-    if (firstArray[i] === ' ') {
+    if (firstArray[i] === " ") {
       continue;
     }
     if (i === 0) {
       finalArray.push(firstArray[i].toUpperCase() + firstArray.slice(i + 1));
     }
     if (i > 0) {
-      finalArray.push(firstArray.slice(0, i) + firstArray[i].toUpperCase() + firstArray.slice(i + 1));
+      finalArray.push(
+        firstArray.slice(0, i) +
+          firstArray[i].toUpperCase() +
+          firstArray.slice(i + 1)
+      );
     }
   }
-  return finalArray.map((el) => el.replace(/[,]/gi, ''));
+  return finalArray.map((el) => el.replace(/[,]/gi, ""));
 }
 
 console.log(wave("This is a few words"));
 
 //CAMELCASE METHOD - LVL 6
 
-String.prototype.camelCase = function() {
-  let array = this.split(' ');
+String.prototype.camelCase = function () {
+  let array = this.split(" ");
   let final = [];
   for (let i = 0; i < array.length; i++) {
     if (array[i][0] == undefined) continue;
     final.push(array[i][0].toUpperCase() + array[i].slice(1));
   }
-  return final.join('');
-}
+  return final.join("");
+};
 
 //NUMERICALS OF A STRING - LVL 6
 
-function numericals(s){
-  let array = s.split('');
+function numericals(s) {
+  let array = s.split("");
   let map = {};
-  let final = '';
+  let final = "";
   array.forEach((value) => {
-    if (!map[value]){
+    if (!map[value]) {
       map[value] = 0;
     }
     final += map[value] += 1;
@@ -715,13 +821,13 @@ function findMissingLetter(array) {
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     const startIdx = alphabet.indexOf(array[0]);
     const regex = alphabet.slice(startIdx, startIdx + (array.length + 1));
-    return regex.filter(x => !array.includes(x)).join("");
+    return regex.filter((x) => !array.includes(x)).join("");
   }
   if (array[0].match(/[a-z]/)) {
     const alphabet2 = "abcdefghijklmnopqrstuvwxyz".split("");
     const startIdx2 = alphabet2.indexOf(array[0]);
     const regex2 = alphabet2.slice(startIdx2, startIdx2 + (array.length + 1));
-    return regex2.filter(x => !array.includes(x)).join("");
+    return regex2.filter((x) => !array.includes(x)).join("");
   }
 }
 
@@ -730,9 +836,7 @@ console.log(findMissingLetter(["a", "b", "c", "d", "f"]));
 //PERSISTENCE - LVL 6
 
 function persistence(num) {
-  let array = String(num)
-    .split("")
-    .map(Number);
+  let array = String(num).split("").map(Number);
   let count = 0;
   while (array.length > 1) {
     array = String(array.reduce((a, b) => a * b))
@@ -844,8 +948,8 @@ function indexOf(arr, pred, start = 0) {
 }
 
 function wheatFromChaff(values) {
-  let firstPos = indexOf(values, x => x > 0);
-  let lastNeg = lastIndexOf(values, x => x < 0);
+  let firstPos = indexOf(values, (x) => x > 0);
+  let lastNeg = lastIndexOf(values, (x) => x < 0);
 
   while (firstPos < lastNeg) {
     let a = values[firstPos];
@@ -853,8 +957,8 @@ function wheatFromChaff(values) {
     values[firstPos] = b;
     values[lastNeg] = a;
 
-    firstPos = indexOf(values, x => x > 0, firstPos);
-    lastNeg = lastIndexOf(values, x => x < 0, lastNeg);
+    firstPos = indexOf(values, (x) => x > 0, firstPos);
+    lastNeg = lastIndexOf(values, (x) => x < 0, lastNeg);
   }
   return values;
 }
@@ -980,8 +1084,8 @@ console.log(
 let array = [3, 2, 5, 4, 1];
 
 function sortArray(array) {
-  let odds = array.filter(element => element % 2 !== 0).sort((a, b) => a - b);
-  return array.map(element => {
+  let odds = array.filter((element) => element % 2 !== 0).sort((a, b) => a - b);
+  return array.map((element) => {
     if (element % 2 !== 0) {
       return odds.shift();
     } else {
@@ -1020,7 +1124,7 @@ let key = [
   "w",
   "x",
   "y",
-  "z"
+  "z",
 ];
 
 function wordScore(word) {
@@ -1058,10 +1162,10 @@ function getOrder(input) {
     "Sandwich",
     "Onionrings",
     "Milkshake",
-    "Coke"
+    "Coke",
   ];
   let output = [];
-  menu.forEach(value => {
+  menu.forEach((value) => {
     output.push(
       ...Array((input.match(RegExp(value, "gi")) || []).length).fill(value)
     );
@@ -1089,7 +1193,7 @@ function goodVsEvil(good, evil) {
     goodArmyPoints.push(good[i] * goodWorth[i]);
   }
 
-  goodArmyPoints = goodArmyPoints.reduce(function(sum, value) {
+  goodArmyPoints = goodArmyPoints.reduce(function (sum, value) {
     return sum + value;
   });
 
@@ -1098,7 +1202,7 @@ function goodVsEvil(good, evil) {
     evilArmyPoints.push(evil[j] * evilWorth[j]);
   }
 
-  evilArmyPoints = evilArmyPoints.reduce(function(sum, value) {
+  evilArmyPoints = evilArmyPoints.reduce(function (sum, value) {
     return sum + value;
   });
 
@@ -1136,7 +1240,7 @@ function menStillStanding(cards) {
 }
 
 function getNumberOfPlayers(team) {
-  return team.filter(player => player > 0).length;
+  return team.filter((player) => player > 0).length;
 }
 
 //A STRING OF SORTS - LVL 6
@@ -1172,7 +1276,7 @@ function count(addresses) {
     stateMap[state] += 1;
   });
   let array = Object.entries(stateMap);
-  return array.map(pair => ({ state: pair[0], count: pair[1] }));
+  return array.map((pair) => ({ state: pair[0], count: pair[1] }));
 }
 
 //CHECK IF BRACES ARE VALID - LVL 6
@@ -1296,23 +1400,14 @@ function sortArray(array) {
 
 function groupByCommas(n) {
   try {
-    n = n
-      .toString()
-      .split("")
-      .reverse()
-      .join("");
+    n = n.toString().split("").reverse().join("");
     return n
       .replace(/\d{3}/g, (match, i) => {
         if (!n[i + 3]) return match;
         return `${match},`;
       })
       .split(",")
-      .map(i =>
-        i
-          .split("")
-          .reverse()
-          .join("")
-      )
+      .map((i) => i.split("").reverse().join(""))
       .reverse()
       .join(",");
   } catch (error) {
@@ -1326,17 +1421,17 @@ function alphabetized(s) {
   s = s.replace(/\s+|\W+|\d+|[_]+/g, "");
   return s
     .split("")
-    .map(function(x, i) {
+    .map(function (x, i) {
       return [x, i];
     })
-    .sort(function([a, i], [b, j]) {
+    .sort(function ([a, i], [b, j]) {
       a = a.toLowerCase();
       b = b.toLowerCase();
       if (a == b) return i - j;
       else if (a < b) return -1;
       else return 1;
     })
-    .map(function([x, i]) {
+    .map(function ([x, i]) {
       return x;
     })
     .join("");
@@ -1346,7 +1441,7 @@ function alphabetized(s) {
 
 function meeting(string) {
   let newString = string.split(";");
-  let newArray = newString.map(entry => {
+  let newArray = newString.map((entry) => {
     const [first, last] = entry.toUpperCase().split(":");
     return `(${last}, ${first})`;
   });
@@ -1528,9 +1623,7 @@ function factorial(num) {
   return factorial;
 }
 function strong(n) {
-  let newNum = String(n)
-    .split("")
-    .map(Number);
+  let newNum = String(n).split("").map(Number);
   let sum = 0;
   newNum.forEach((value, index) => {
     sum += factorial(value);
@@ -1547,61 +1640,86 @@ function strong(n) {
 function mostMoney(students) {
   let array = [];
   if (students.length === 1) {
-     return students[0].name;
+    return students[0].name;
   }
   students.forEach((value, index) => {
-     let total = ((5 * value.fives) + (10 * value.tens) + (20 * value.twenties));
-     array.push([total, value.name]);
+    let total = 5 * value.fives + 10 * value.tens + 20 * value.twenties;
+    array.push([total, value.name]);
   });
   array = array.sort((a, b) => b[0] - a[0]);
   if (array.every((el, i, array) => el[0] === array[0][0])) {
-    return 'all';
-  }
-  else {
+    return "all";
+  } else {
     return array[0][1];
   }
 }
 
 //INDEXED CAPITALIZATION - LVL 7
 
-function capitalize(s,arr){
+function capitalize(s, arr) {
   let newString = "";
   for (let i = 0; i < s.length; i++) {
     if (arr.includes(i)) {
-      newString += (s[i].toUpperCase());
-    }
-    else {
-      newString += s[i]
+      newString += s[i].toUpperCase();
+    } else {
+      newString += s[i];
     }
   }
   return newString;
-};
+}
 
 //REMOVE URL ANCHOR - LVL 7
 
-function removeUrlAnchor(url){
-  if (!url.includes('#')) {
+function removeUrlAnchor(url) {
+  if (!url.includes("#")) {
     return url;
   }
-  return url.slice(0, url.indexOf('#'));
+  return url.slice(0, url.indexOf("#"));
 }
 
-console.log(removeUrlAnchor('www.codewars.com/katas/#23'));
+console.log(removeUrlAnchor("www.codewars.com/katas/#23"));
 
 //FIND THE COMBINATION - LVL 7
 
-var countCombinations = function(string, key){
-  return (string.split( new RegExp( key, "gi" ) ).length-1);
-}
+var countCombinations = function (string, key) {
+  return string.split(new RegExp(key, "gi")).length - 1;
+};
 
-console.log(countCombinations('GrEggreGGREGgREG', 'greg'));
+console.log(countCombinations("GrEggreGGREGgREG", "greg"));
 
 //LOVE VS FRIENDSHIP - LVL 7
 
-const alphabet = {'a': 1, 'c': 3, 'b': 2, 'e': 5, 'd': 4, 'g': 7, 'f': 6, 'i': 9, 'h': 8, 'k': 11, 'j': 10, 'm': 13, 'l': 12, 'o': 15, 'n': 14, 'q': 17, 'p': 16, 's': 19, 'r': 18, 'u': 21, 't': 20, 'w': 23, 'v': 22, 'y': 25, 'x': 24, 'z': 26}
+const alphabet = {
+  a: 1,
+  c: 3,
+  b: 2,
+  e: 5,
+  d: 4,
+  g: 7,
+  f: 6,
+  i: 9,
+  h: 8,
+  k: 11,
+  j: 10,
+  m: 13,
+  l: 12,
+  o: 15,
+  n: 14,
+  q: 17,
+  p: 16,
+  s: 19,
+  r: 18,
+  u: 21,
+  t: 20,
+  w: 23,
+  v: 22,
+  y: 25,
+  x: 24,
+  z: 26,
+};
 
-function wordsToMarks(string){
-  let array = string.split('');
+function wordsToMarks(string) {
+  let array = string.split("");
   let total = 0;
   for (let i = 0; i < array.length; i++) {
     let letter = array[i];
@@ -1612,15 +1730,17 @@ function wordsToMarks(string){
   return total;
 }
 
-console.log(wordsToMarks('attitude'));
+console.log(wordsToMarks("attitude"));
 
 //FACTORIAL - LVL 7
 
 function factorial(n) {
-  if(n < 0 || n > 12){
-    throw new RangeError('')
+  if (n < 0 || n > 12) {
+    throw new RangeError("");
   }
-  let array = Array(n).fill(0).map((e, i) => i + 1)
+  let array = Array(n)
+    .fill(0)
+    .map((e, i) => i + 1);
   if (array.length) return array.reduce((a, b) => a * b);
   else {
     return 1;
@@ -1635,13 +1755,13 @@ function fizzbuzz(n) {
   let final = [];
   for (let i = 1; i <= n; i++) {
     if (i % 5 === 0 && i % 3 === 0) {
-      final.push('FizzBuzz');
+      final.push("FizzBuzz");
     }
     if (i % 3 === 0 && i % 5 !== 0) {
-      final.push('Fizz');
+      final.push("Fizz");
     }
     if (i % 5 === 0 && i % 3 !== 0) {
-      final.push('Buzz');
+      final.push("Buzz");
     }
     if (i % 3 !== 0 && i % 5 !== 0) {
       final.push(i);
@@ -1655,31 +1775,31 @@ console.log(fizzBuzz(100));
 //SPACIFY - LVL 7
 
 function spacify(str) {
-	let final = '';
-	for (let i = 0; i < str.length; i++) {
-	  final += str[i] + ' ';
-	}
-	return final.trimRight();
+  let final = "";
+  for (let i = 0; i < str.length; i++) {
+    final += str[i] + " ";
+  }
+  return final.trimRight();
 }
-console.log(spacify('hello world'));
+console.log(spacify("hello world"));
 
 //STRING ENDS WITH? - LVL 7
 
-function solution(str, ending){
-	return str.slice(str.length - ending.length) === ending;
+function solution(str, ending) {
+  return str.slice(str.length - ending.length) === ending;
 }
-console.log(solution('abcde', 'cde'));
+console.log(solution("abcde", "cde"));
 
 //MAX MULTIPLE - LVL 7
 
-function maxMultiple(divisor, bound){
-	let array = [];
-	for (let i = 0; i <= bound; i++) {
-		if (i % divisor === 0) {
-			array.push(i);
-		}
-	}
-	return array[array.length - 1];
+function maxMultiple(divisor, bound) {
+  let array = [];
+  for (let i = 0; i <= bound; i++) {
+    if (i % divisor === 0) {
+      array.push(i);
+    }
+  }
+  return array[array.length - 1];
 }
 
 console.log(maxMultiple(2, 7));
@@ -1687,15 +1807,15 @@ console.log(maxMultiple(2, 7));
 //ODD ONES OUT - LVL 7
 
 function oddOnesOut(nums) {
-	let map = {};
-	nums.forEach((value) => {
-		if (!map[value]) {
-			map[value] = 0;
-		}
-		map[value] += 1;
-	});
-    let final = nums.filter(element => map[element] % 2 === 0);
-	return final;
+  let map = {};
+  nums.forEach((value) => {
+    if (!map[value]) {
+      map[value] = 0;
+    }
+    map[value] += 1;
+  });
+  let final = nums.filter((element) => map[element] % 2 === 0);
+  return final;
 }
 
 console.log(oddOnesOut([42, 72, 32, 4, 94, 82, 67, 67]));
@@ -1798,12 +1918,12 @@ console.log(adjacentElementsProduct([4, 12, 3, 1, 5]));
 function avgArray(parentArr) {
   const parentArrLength = parentArr.length;
   const first = parentArr.shift();
-  parentArr.forEach(value => {
+  parentArr.forEach((value) => {
     value.forEach((element, index) => {
       first[index] += element;
     });
   });
-  return first.map(element => element / parentArrLength);
+  return first.map((element) => element / parentArrLength);
 }
 
 //FIND THE STRAY NUMBER - LVL 7
@@ -1822,9 +1942,7 @@ console.log([17, 17, 3, 17, 17, 17, 17]);
 
 function disariumNumber(n) {
   let originalN = n;
-  n = String(n)
-    .split("")
-    .map(Number);
+  n = String(n).split("").map(Number);
   let newArray = [];
   for (let i = 0; i < n.length; i++) {
     let digit = n[i];
@@ -1881,7 +1999,7 @@ function duplicates(array) {
 
 function duplicates(arr) {
   let counts = new Map();
-  return arr.filter(n => {
+  return arr.filter((n) => {
     let count = counts.get(n);
     counts.set(n, count ? count + 1 : 1);
     return count === 1;
@@ -1989,11 +2107,7 @@ function getCount(str) {
 //CONSECUTIVE LETTERS - LVL 7
 
 function solve(s) {
-  s = s
-    .trim()
-    .split("")
-    .sort()
-    .join(""); // remove white spaces, split to sort and then join again
+  s = s.trim().split("").sort().join(""); // remove white spaces, split to sort and then join again
   for (let i = 0; i < s.length - 1; i++) {
     if (s.charCodeAt(i + 1) - s.charCodeAt(i) !== 1) {
       return false;
@@ -2048,7 +2162,7 @@ function shiftLeft(s, t) {
 
 //YOU'RE A SQUARE! - LVL7
 
-var isSquare = function(n) {
+var isSquare = function (n) {
   if (n === 0) {
     return true;
   }
@@ -2114,7 +2228,7 @@ function ultimateReverse(array) {
   const lengths = array.map(({ length }) => length);
   let reversedStr = [...array.join("")].reverse().join("");
   const result = [];
-  lengths.forEach(length => {
+  lengths.forEach((length) => {
     result.push(reversedStr.slice(0, length));
     reversedStr = reversedStr.slice(length);
   });
@@ -2124,7 +2238,7 @@ function ultimateReverse(array) {
 //JAVASCRIPT ARRAY FILTER - LVL 7
 
 function getEvenNumbers(numbersArray) {
-  return numbersArray.filter(num => num % 2 == 0);
+  return numbersArray.filter((num) => num % 2 == 0);
 }
 
 //THE OFFICE I - OUTED - LVL 7
@@ -2359,7 +2473,7 @@ function squareSum(numbers) {
 //BEGINNER - LOST WITHOUT A MAP - LVL 8
 
 function maps(x) {
-  return x.map(value => value * 2);
+  return x.map((value) => value * 2);
 }
 
 //WILL THERE BE ENOUGH SPACE - LVL 8
@@ -2374,7 +2488,7 @@ function enough(cap, on, wait) {
 
 //FIND OUT WHETHER THE SHAPE IS A CUBE - LVL 8
 
-var cubeChecker = function(volume, side) {
+var cubeChecker = function (volume, side) {
   if (side <= 0) {
     return false;
   }
@@ -2398,7 +2512,7 @@ function otherAngle(a, b) {
 function points(games) {
   let points = 0;
 
-  games.map(game => {
+  games.map((game) => {
     let item = game.split(":");
     let x = item[0];
     let y = item[1];
@@ -2543,11 +2657,11 @@ function nearestSq(n) {
 
 //IS STRING UPPERCASE - LVL 8
 
-String.prototype.isUpperCase = function() {
+String.prototype.isUpperCase = function () {
   const str = this.toString();
 
   let array = Array.from(str);
-  let upperCase = array.map(element => element.toUpperCase());
+  let upperCase = array.map((element) => element.toUpperCase());
   let string1 = JSON.stringify(array);
   let string2 = JSON.stringify(upperCase);
 
@@ -2560,18 +2674,18 @@ String.prototype.isUpperCase = function() {
 
 var rooms = {
   myRoom1: {
-    name: 'room1',
-    description: 'this is the first room',
-    completed: 'yes'
+    name: "room1",
+    description: "this is the first room",
+    completed: "yes",
   },
   myRoom2: {
-    name: 'room2',
-    description: 'this is the second room',
-    completed: 'yes'
+    name: "room2",
+    description: "this is the second room",
+    completed: "yes",
   },
   myRoom3: {
-    name: 'room3',
-    description: 'this is the third room',
-    completed: 'no'
-  }
-}
+    name: "room3",
+    description: "this is the third room",
+    completed: "no",
+  },
+};
