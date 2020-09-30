@@ -1,3 +1,15 @@
+//Highetst and Lowest - LVL 7
+
+function highAndLow(numbers) {
+  let myArray = numbers
+    .split(" ")
+    .map(Number)
+    .sort((a, b) => a - b);
+  return String(myArray.slice(-1).pop()) + " " + String(myArray[0]);
+}
+
+console.log(highAndLow("1 9 3 4 -5"));
+
 //Eviternity Numbers - LVL 7
 
 function solve(a, b) {
@@ -32,6 +44,7 @@ function solve(a, b) {
   }
   return final.length;
 }
+
 console.log(solve(0, 100));
 
 //String Doubles - LVL 7
