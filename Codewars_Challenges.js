@@ -1,3 +1,14 @@
+//MIRROR MIRROR - LVL 7
+
+function mirror(data) {
+  let copy = data.slice();
+  let final = [];
+  let sorted = copy.sort((a, b) => a - b);
+  let second = [sorted.slice(0, sorted.length - 1).reverse()];
+  final.push(sorted, second);
+  return final.flat(Infinity);
+}
+
 //Highetst and Lowest - LVL 7
 
 function highAndLow(numbers) {
