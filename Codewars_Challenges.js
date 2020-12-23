@@ -1,3 +1,41 @@
+//INTERVIEW QUESTION (EASY) - LVL 7
+
+function getStrings(city){
+  let array = city.split('')
+  .map((el, i) => el = el.toLowerCase())
+  .filter((el, i) => el.match(/^[a-z]+$/));
+  let map = {};
+  array.forEach((el, i) => {
+      if (!map[el]) {
+          map[el] = 0;
+      }
+      map[el] += 1;
+  })
+  console.log('mappp', map);
+  let finalString = JSON.stringify(map)
+  .replace(/["']/g, "")
+  .replace(/[\{\}]/g, "")
+  .replace(/\d+/g, m => '*'.repeat(+m));
+  return finalString;
+}
+console.log(getStrings('Las Vegas'));
+
+//DOMINANT ARRAY ELEMENTS - LVL 7
+
+function solve(arr){
+  let final = [];
+    for (let i = 0; i < arr.length; i++) {
+      let thisArr = arr.slice(i + 1);
+      let el = arr[i];
+      if (thisArr.every((e => e < el))) {
+        final.push(el);
+      }
+    }
+    return final; 
+};
+
+console.log(solve([1,21,4,7,5]));
+
 //MIRROR MIRROR - LVL 7
 
 function mirror(data) {
