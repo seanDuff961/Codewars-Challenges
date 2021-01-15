@@ -1,3 +1,76 @@
+//STRING BREAKERS - LVL 6
+
+function stringBreakers(n, string){
+  string = string.replace(/\s/g,'');
+  let chunks = [];
+  for (let i = 0, charsLength = string.length; i < charsLength; i += n) {
+      chunks.push(string.substring(i, i + n));
+  }
+  let finalString = '';
+  for (let j = 0; j < chunks.length; j++) {
+      finalString += chunks[j] + '\n';
+  }
+  return finalString;
+}
+console.log(stringBreakers(5, 'This is an example string'));
+
+//ROTATE TO THE MAX - LVL 7
+
+const rotateToMax = n => {
+  return Number(String(n).split('').map(Number).sort((a, b) => {
+      return b - a;
+  }).join(''));
+}
+
+console.log(rotateToMax('123'));
+
+//heggeleggleggo - LVL 7
+
+function heggeleggleggo(word){
+  let newWord= '';
+  for (let i = 0; i < word.length; i++) {
+      //if character is a vowel
+      if (word[i].match(/[aeiou]/ig)){
+          newWord += word[i];
+      }
+      //if character is a consonant
+      if (word[i].match(/[^aeiou ]/ig)) {
+          newWord += word[i] + 'egg';
+      }
+      //if character is a space 
+      if (word[i] === ' ') {
+          newWord += ' ';
+      }
+  }
+  return newWord;
+}
+
+console.log(heggeleggleggo('code here'));
+
+//SUM EVEN NUMBERS - LVL 7
+
+function sumEvenNumbers(input) {
+  return input.filter((a, b) => a % 2 === 0).reduce((c, d) => c + d);
+}
+console.log(sumEvenNumber([4, 3, 1, 2, 5, 10, 6, 7, 9, 8]));
+
+//UNIQUE STRING CHARACTERS - LVL 7
+
+function solve(a,b){
+  let differences = '';
+  for (let i = 0; i < a.length; i++) {
+    if (!b.includes(a[i])) {
+      differences += a[i];
+    }
+  }
+  for (let k = 0; k < b.length; k++) {
+    if (!a.includes(b[k])) {
+      differences += b[k];
+    }
+  }
+  return differences;
+};
+
 //INTERVIEW QUESTION (EASY) - LVL 7
 
 function getStrings(city){
@@ -2508,6 +2581,13 @@ function countBy(x, n) {
   }
   return z;
 }
+
+//TAKE THE DERIVATIVE - LVL 8
+
+function derive(coefficient,exponent) {
+  return String(coefficient * exponent) + "x^" + String(exponent-1);
+}
+console.log((derive(7, 8)));
 
 //REMOVE THE FIRST AND LAST CHARACTER - LVL 8
 
