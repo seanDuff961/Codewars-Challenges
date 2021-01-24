@@ -14,6 +14,23 @@ function stringBreakers(n, string){
 }
 console.log(stringBreakers(5, 'This is an example string'));
 
+//SIMPLE CONSECUTIVE PAIRS
+
+function pairs(ar){
+  let chunks = [];
+  let count = 0;
+  for (let i = 0; i < ar.length; i += 2) {
+      chunks.push([ar[i], ar[i+1]]);
+  }
+  for (let j = 0; j < chunks.length; j++) {
+      let pair = chunks[j];
+      if (pair[0] + 1 === pair[1] || pair[0] - 1 === pair[1]){
+          count++;
+      }
+  }
+  return count;
+};
+
 //ROTATE TO THE MAX - LVL 7
 
 const rotateToMax = n => {
