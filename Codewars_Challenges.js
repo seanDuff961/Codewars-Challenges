@@ -14,7 +14,31 @@ function stringBreakers(n, string){
 }
 console.log(stringBreakers(5, 'This is an example string'));
 
-//SIMPLE CONSECUTIVE PAIRS
+//CONSECUTIVE COUNT - LVL 6
+
+function getConsectiveItems(items, key){
+  items = String(items);
+  key = String(key);
+  console.log('itemsss', items);
+  let longest = '';
+  let littleLongest = '';
+  for (let i = 0; i < items.length; i++) {
+      if (items[i] === key) {
+          littleLongest += key;
+      }
+      else {
+          littleLongest = '';
+      }
+      if (littleLongest.length > longest.length) {
+          longest = littleLongest;
+      }
+  }
+  return longest.length;
+}
+
+console.log("abcdaaadse", "a");
+
+//SIMPLE CONSECUTIVE PAIRS - LVL 7
 
 function pairs(ar){
   let chunks = [];
@@ -30,6 +54,8 @@ function pairs(ar){
   }
   return count;
 };
+
+console.log(pairs([21, 20, 22, 40, 39, -56, 30, -55, 95, 94]));
 
 //ROTATE TO THE MAX - LVL 7
 
