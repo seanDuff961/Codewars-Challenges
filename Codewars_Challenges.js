@@ -38,6 +38,33 @@ function getConsectiveItems(items, key){
 
 console.log("abcdaaadse", "a");
 
+//HELL'S KITCHEN - LVL 7
+
+function gordon(a) {
+  let newString = '';
+  let myArray = a.split(' ');
+  console.log('myArrayyyy', myArray);
+  for (let i = 0; i < myArray.length; i++) {
+    let word = myArray[i];
+    let newWord = '';
+    console.log('wordddd', word);
+    for (let j = 0; j < word.length; j++) {
+      if (word[j] === 'a') {
+         newWord += '@';
+      }
+      if (word[j].match(/[eiou]/)) {
+         newWord += '*';
+      }
+      if (word[j].match(/[^aeiou]/)) {
+      newWord += word[j].toUpperCase();
+      }
+    }
+    newString += newWord + '!!!!' + ' ';
+  }
+  return newString.trim();
+}
+console.log(gordon('What feck damn cake'));
+
 //SIMPLE CONSECUTIVE PAIRS - LVL 7
 
 function pairs(ar){
